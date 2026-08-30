@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Helps | Smart Farming. Better Decisions. Healthy Crops.</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">🌱</span> Farmer Helps
+            </a>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#disease-detector" class="nav-link">Disease Detector</a></li>
+                <li class="nav-item"><a href="#weather-section" class="nav-link">Weather</a></li>
+                <li class="nav-item"><a href="#mandi-section" class="nav-link">Mandi Rates</a></li>
+                <li class="nav-item"><a href="#schemes-section" class="nav-link">Govt Schemes</a></li>
+                <li class="nav-item"><a href="#helplines-section" class="nav-link">Helplines</a></li>
+            </ul>
+
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <span class="made-in-india">🇮🇳 Made for Indian Farmers</span>
+            <h1 class="hero-title">Your Smart Farming Assistant</h1>
+            <p class="hero-subtitle">Detect crop diseases, check weather, view mandi rates and discover government schemes — all in one place.</p>
+            <div class="hero-buttons">
+                <a href="#disease-detector" class="btn btn-primary">Detect Crop Disease</a>
+                <a href="#services" class="btn btn-secondary">Explore Services</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- AI Crop Disease Detector Section -->
+    <section class="detector section" id="disease-detector">
+        <div class="container">
+            <div class="section-header">
+                <h2>AI Crop Disease Detector</h2>
+                <p>Upload a photo of your crop or use your camera to check for possible diseases.</p>
+            </div>
+
+            <!-- Input Options -->
+            <div class="detector-options" id="detector-options">
+                <div class="detector-card" id="upload-option">
+                    <div class="detector-icon">📁</div>
+                    <h3>Upload Photo</h3>
+                    <p>Select an image from your device</p>
+                    <input type="file" id="image-upload" accept="image/*" hidden>
+                    <button class="btn btn-outline" id="btn-trigger-upload">Select Image</button>
+                </div>
+
+                <div class="detector-card" id="camera-option">
+                    <div class="detector-icon">📷</div>
+                    <h3>Use Camera</h3>
+                    <p>Take a picture of the affected leaf</p>
+                    <button class="btn btn-outline" id="btn-trigger-camera">Open Camera</button>
+                </div>
+            </div>
+
+            <!-- Preview & Action Area (Hidden by default) -->
+            <div class="preview-area" id="preview-area" style="display: none;">
+                <div class="preview-container">
+                    <!-- Image Preview -->
+                    <div class="image-preview-wrapper" id="image-preview-wrapper" style="display: none;">
+                        <img id="image-preview" src="" alt="Crop Preview">
+                        <p id="file-name" class="file-name">filename.jpg</p>
+                        <div class="preview-actions">
+                            <button class="btn btn-outline" id="btn-replace-image">Replace</button>
+                            <button class="btn btn-primary" id="btn-analyze">Analyze Photo</button>
+                        </div>
+                    </div>
+
+                    <!-- Camera Stream -->
+                    <div class="camera-wrapper" id="camera-wrapper" style="display: none;">
+                        <video id="camera-stream" autoplay playsinline></video>
+                        <div class="preview-actions">
+                            <button class="btn btn-outline" id="btn-cancel-camera">Cancel</button>
+                            <button class="btn btn-primary" id="btn-capture">Capture Photo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Card (Hidden by default) -->
+            <div class="result-card" id="result-card" style="display: none;">
+                <div class="result-header">
+                    <h3>Analysis Result</h3>
+                    <span class="demo-badge" id="demo-badge" style="display: none;">Demo prediction — connect your trained AI model for real result.</span>
+                </div>
+                
+                <div class="result-grid">
+                    <div class="result-item">
+                        <span class="result-label">Crop</span>
+                        <span class="result-value" id="res-crop">Wheat</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Disease</span>
+                        <span class="result-value danger" id="res-disease">Yellow Rust</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Confidence</span>
+                        <span class="result-value" id="res-confidence">94%</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Severity</span>
+                        <span class="result-value warning" id="res-severity">High</span>
+                    </div>
+                </div>
+
+                <div class="result-details">
+                    <h4>Explanation</h4>
+                    <p id="res-explanation">Yellow stripes appearing on leaves indicate a fungal infection.</p>
+                    
+                    <h4>Recommended Action</h4>
+                    <p id="res-action">Apply Propiconazole fungicide immediately.</p>
+                    
+                    <h4>Prevention Tips</h4>
+                    <p id="res-prevention">Use rust-resistant varieties for the next season.</p>
+                </div>
+                
+                <button class="btn btn-outline" id="btn-reset-detector" style="margin-top: 20px;">Analyze Another Image</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weather & Location Section -->
+    <section class="weather section" id="weather-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Weather for Your Farm</h2>
+                <p>Get real-time weather updates to plan your farming activities better.</p>
+            </div>
+
+            <div class="weather-card">
+                <div class="weather-header">
+                    <div class="location-info">
+                        <span class="location-icon">📍</span>
+                        <h3 id="weather-location">Detecting location...</h3>
+                    </div>
+                    <button class="btn btn-outline btn-small" id="btn-detect-location">Detect My Location</button>
+                </div>
+                
+
+                <!-- Manual Location Input (Hidden by default) -->
+                <div class="manual-location" id="manual-location" style="display: none;">
+                    <p>Location access denied. Please enter your city manually:</p>
+                    <div class="location-input-group">
+                        <input type="text" id="city-input" placeholder="Enter city name..." class="input-field">
+                        <button class="btn btn-primary" id="btn-search-weather">Search</button>
+                    </div>
+                </div>
+
+                <!-- Weather Data -->
+                <div class="weather-grid" id="weather-data-container">
+                    <div class="weather-main">
+                        <div class="weather-temp-box">
+                            <span class="weather-temp" id="weather-temp">--°C</span>
+                            <span class="weather-desc" id="weather-desc">Loading...</span>
+                        </div>
+                        <div class="weather-main-icon" id="weather-icon">☁️</div>
+                    </div>
+                    
+                    <div class="weather-details">
+                        <div class="weather-detail-item">
+                            <span class="detail-icon">💧</span>
+                            <div class="detail-text">
+                                <span class="detail-label">Humidity</span>
+                                <span class="detail-value" id="weather-humidity">--%</span>
+                            </div>
+                        </div>
+                        <div class="weather-detail-item">
+                            <span class="detail-icon">💨</span>
+                            <div class="detail-text">
+                                <span class="detail-label">Wind Speed</span>
+                                <span class="detail-value" id="weather-wind">-- km/h</span>
+                            </div>
+                        </div>
+                        <div class="weather-detail-item">
+                            <span class="detail-icon">🌧️</span>
+                            <div class="detail-text">
+                                <span class="detail-label">Rain Prob.</span>
+                                <span class="detail-value" id="weather-rain">--%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mandi / Market Rates Section -->
+    <section class="mandi section" id="mandi-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Today's Mandi Rates</h2>
+                <p>Track live agricultural market prices across India.</p>
+            </div>
+            
+            <div class="mandi-card">
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <span class="demo-badge" id="mandi-demo-badge">Demo mandi data — connect a live market API for current prices.</span>
+                </div>
+
+                <div class="mandi-controls">
+                    <div class="control-group">
+                        <label for="mandi-search">Search:</label>
+                        <input type="text" id="mandi-search" class="input-field" placeholder="Search crop or mandi...">
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="mandi-crop-filter">Crop:</label>
+                        <select id="mandi-crop-filter" class="input-field select-field">
+                            <option value="">All Crops</option>
+                            <!-- Options populated by JS -->
+                        </select>
+                    </div>
+
+                    <div class="control-group">
+                        <label for="mandi-state-filter">State:</label>
+                        <select id="mandi-state-filter" class="input-field select-field">
+                            <option value="">All States</option>
+                            <!-- Options populated by JS -->
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="mandi-sort">Sort By:</label>
+                        <select id="mandi-sort" class="input-field select-field">
+                            <option value="default">Default</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="mandi-table" id="mandi-table">
+                        <thead>
+                            <tr>
+                                <th>Crop</th>
+                                <th>Mandi</th>
+                                <th>State</th>
+                                <th>Min Price (₹)</th>
+                                <th>Max Price (₹)</th>
+                                <th>Modal Price (₹)</th>
+                                <th>Unit</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mandi-tbody">
+                            <tr><td colspan="8" style="text-align: center; padding: 20px;">Loading rates...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Government Schemes Section -->
+    <section class="schemes section" id="schemes-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Government Schemes</h2>
+                <p>Discover financial aid, subsidies, and agricultural schemes made for you.</p>
+            </div>
+            
+            <div class="schemes-controls" style="max-width: 600px; margin: 0 auto 40px;">
+                <input type="text" id="scheme-search" class="input-field" placeholder="Search government schemes..." style="width: 100%; padding: 15px; font-size: 1.1rem; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #ddd;">
+            </div>
+
+            <div class="schemes-grid" id="schemes-container">
+                <!-- Scheme cards will be dynamically populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Services Section -->
+    <section class="services section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick Services</h2>
+                <p>Everything you need for better farming, accessible instantly.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="service-icon">🌱</div>
+                    <h3>Crop Disease Detection</h3>
+                    <p>Identify diseases in your crops instantly using advanced AI technology.</p>
+                    <a href="#disease-detector" class="btn btn-outline">Analyze Now</a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="service-icon">📷</div>
+                    <h3>Upload / Camera</h3>
+                    <p>Take a picture or upload a photo of your leaf for quick diagnosis.</p>
+                    <a href="#disease-detector" class="btn btn-outline">Open Camera</a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="service-icon">🌦️</div>
+                    <h3>Weather</h3>
+                    <p>Get real-time local weather forecasts to plan your farming activities.</p>
+                    <a href="#weather-section" class="btn btn-outline">Check Weather</a>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="service-card">
+                    <div class="service-icon">📈</div>
+                    <h3>Mandi Rates</h3>
+                    <p>Stay updated with the latest live crop prices in your local Mandi.</p>
+                    <a href="#mandi-section" class="btn btn-outline">View Rates</a>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="service-card">
+                    <div class="service-icon">🏛️</div>
+                    <h3>Government Schemes</h3>
+                    <p>Discover financial aid and agricultural schemes made for you.</p>
+                    <a href="#schemes-section" class="btn btn-outline">Find Schemes</a>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="service-card">
+                    <div class="service-icon">☎️</div>
+                    <h3>Farmer Helpline</h3>
+                    <p>Directly connect with agricultural experts for advice and support.</p>
+                    <a href="#helplines-section" class="btn btn-outline">Call Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farmer Helpline Section -->
+    <section class="helplines section" id="helplines-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Farmer Helplines</h2>
+                <p>Direct support from agricultural experts and government departments.</p>
+            </div>
+            
+            <div class="helpline-notice">
+                <span class="detail-icon">⚠️</span>
+                <p><strong>Please verify helpline numbers from official government sources because contact numbers may change.</strong></p>
+            </div>
+
+            <div class="helplines-grid" id="helplines-container">
+                <!-- Helpline cards will be dynamically populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>How Farmer Helps Helps Farmers</h2>
+                <p>Empowering you with data-driven insights for a better harvest.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-number">1</div>
+                    <h3>Identify Crop Diseases</h3>
+                    <p>Catch infections early before they spread and protect your yield.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-number">2</div>
+                    <h3>Make Better Decisions</h3>
+                    <p>Plan irrigation and harvesting based on accurate weather forecasts.</p>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-number">3</div>
+                    <h3>Find Important Info</h3>
+                    <p>Access the right prices and government support when you need it.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h2><span class="logo-icon">🌱</span> Farmer Helps</h2>
+                <p>Smart Farming. Better Decisions. Healthy Crops.</p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Farmer Helps</p>
+        </div>
+    </footer>
+
+    <!-- Voice Assistant Overlay -->
+    <div class="voice-overlay" id="voice-overlay">
+        <div class="voice-panel">
+            <button class="voice-close" id="voice-close">&times;</button>
+            <div class="voice-header">
+                <h3>Voice Assistant</h3>
+                <div class="lang-selector">
+                    <button class="lang-btn active" id="lang-en" data-lang="en-IN">English</button>
+                    <span style="color:#ccc;">|</span>
+                    <button class="lang-btn" id="lang-hi" data-lang="hi-IN">हिंदी</button>
+                </div>
+            </div>
+            
+            <div class="voice-status" id="voice-status">Click microphone to speak</div>
+            <div class="voice-text-box">
+                <p id="voice-text" class="voice-text">"Ask me about weather, mandi rates, or crop diseases..."</p>
+            </div>
+            
+            <div class="voice-controls">
+                <button class="voice-action-btn" id="voice-start-btn">
+                    <span class="voice-mic-icon">🎤</span>
+                </button>
+                <div class="voice-unsupported" id="voice-unsupported" style="display:none; color: #d32f2f; margin-top: 15px; font-size: 0.9rem;">
+                    Sorry, your browser does not support voice recognition. Try Google Chrome.
+                </div>
+            </div>
+            <div class="voice-hints">
+                <p>Try saying:</p>
+                <ul>
+                    <li>"आज मौसम कैसा है?"</li>
+                    <li>"गेहूं का मंडी भाव क्या है?"</li>
+                    <li>"Tell me today's weather"</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Microphone Button -->
+    <button class="voice-fab" id="voice-fab" aria-label="Voice Assistant">
+        🎤
+    </button>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        ↑
+    </button>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="toast-container" aria-live="polite">    </div>
+
+    <!-- Scripts -->
+    <script src="route.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
