@@ -7,18 +7,19 @@ document.addEventListener("DOMContentLoaded", () => {
         "weather-section", 
         "mandi-section", 
         "schemes-section", 
-        "helplines-section"
+        "helplines-section",
+        "login"
     ];
 
     // Function to handle route changes
     function handleRouting() {
-        // Get the hash without the '#' symbol. Default to 'home' if empty.
-        let currentHash = window.location.hash.substring(1) || "home";
+        // Get the hash without the '#' symbol. Default to 'login' if empty.
+        let currentHash = window.location.hash.substring(1) || "login";
 
-        // If the hash is not in our routes, default to home
+        // If the hash is not in our routes, default to login
         if (!routes.includes(currentHash)) {
-            currentHash = "home";
-            window.location.hash = "#home";
+            currentHash = "login";
+            window.location.hash = "#login";
         }
 
         // 1. Hide all sections and show the active one

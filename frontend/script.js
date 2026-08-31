@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
     });
 
     // Close menu when a link is clicked
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+            document.body.classList.remove('no-scroll');
         });
     });
 
@@ -341,13 +343,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Weather & Location Feature ---
     const btnDetectLocation = document.getElementById('btn-detect-location');
-    const weatherLocation = document.getElementById('weather-location');
+    const weatherLocation = document.getElementById('location');
     const manualLocation = document.getElementById('manual-location');
     const cityInput = document.getElementById('city-input');
     const btnSearchWeather = document.getElementById('btn-search-weather');
-    const weatherDemoBadge = document.getElementById('weather-demo-badge');
 
-    // UI Elements for Weather
     const uiTemp = document.getElementById('weather-temp');
     const uiDesc = document.getElementById('weather-desc');
     const uiHumidity = document.getElementById('weather-humidity');
@@ -355,83 +355,132 @@ document.addEventListener('DOMContentLoaded', () => {
     const uiRain = document.getElementById('weather-rain');
     const uiIcon = document.getElementById('weather-icon');
 
-    // Detect Location
-    btnDetectLocation.addEventListener('click', () => {
-        weatherLocation.textContent = "Detecting location...";
-        manualLocation.style.display = 'none';
+    const LOCATION_API_URL = "http://127.0.0.1:8000/location";
+    const WEATHER_API_URL = "http://127.0.0.1:8000/weather";
 
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-                    weatherLocation.textContent = `Lat: ${lat.toFixed(2)}, Lon: ${lon.toFixed(2)}`;
-                    loadWeather(lat, lon);
-                },
-                (error) => {
-                    console.error("Geolocation error:", error);
-                    weatherLocation.textContent = "Location access denied";
-                    manualLocation.style.display = 'block';
-                }
-            );
-        } else {
-            weatherLocation.textContent = "Geolocation not supported";
-            manualLocation.style.display = 'block';
-        }
-    });
-
-    // Manual City Search
-    btnSearchWeather.addEventListener('click', () => {
-        const city = cityInput.value.trim();
-        if (city) {
-            weatherLocation.textContent = city;
-            loadWeather(null, null, city);
-        } else {
-            showToast("Please enter a city name.", "warning");
-        }
-    });
-
-    // Load Weather Data
-    async function loadWeather(lat, lon, city = null) {
-        // Show loading state
+    function setWeatherLoading() {
         uiTemp.textContent = "--°C";
         uiDesc.textContent = "Loading...";
         uiHumidity.textContent = "--%";
         uiWind.textContent = "-- km/h";
-        uiRain.textContent = "--%";
-        if (weatherDemoBadge) weatherDemoBadge.style.display = 'none';
-
-        try {
-            let url = CONFIG.WEATHER_API_URL;
-            if (city) {
-                url += `?city=${encodeURIComponent(city)}`;
-            } else if (lat && lon) {
-                url += `?lat=${lat}&lon=${lon}`;
-            }
-
-            const response = await fetch(url);
-            if (!response.ok) throw new Error("Weather API Error");
-            
-            const data = await response.json();
-            
-            // Map the data
-            uiTemp.textContent = data.temperature;
-            uiDesc.textContent = data.description;
-            uiHumidity.textContent = data.humidity;
-            uiWind.textContent = data.wind_speed;
-            uiRain.textContent = data.rain_probability;
-            uiIcon.textContent = data.icon;
-            weatherLocation.textContent = data.location;
-            
-        } catch (error) {
-            console.error("Weather API Error:", error);
-            uiDesc.textContent = "Error loading data";
-            showToast("Failed to fetch weather data.", "error");
-        }
+        uiRain.textContent = "--";
+        uiIcon.textContent = "☁️";
     }
 
-    // Auto-detect location on load (Optional, uncomment if desired)
-    // btnDetectLocation.click();
+    function showWeatherData(data) {
+        const weather = data.weather || {};
+        const location = data.location || {};
+
+        weatherLocation.textContent =
+            location.display_name ||
+            location.city ||
+            location.town ||
+            "Detected Location";
+
+        uiTemp.textContent = weather.temperature || "--°C";
+        uiDesc.textContent = weather.description || "Unknown";
+        uiHumidity.textContent = weather.humidity || "--%";
+        uiWind.textContent = weather.wind_speed || "-- km/h";
+        uiRain.textContent = weather.rain_probability || "--";
+        uiIcon.textContent = weather.icon || "☁️";
+    }
+
+    async function detectLocationAndWeather() {
+        weatherLocation.textContent = "Detecting location...";
+        manualLocation.style.display = 'none';
+        setWeatherLoading();
+        btnDetectLocation.disabled = true;
+        btnDetectLocation.textContent = "Detecting...";
+
+        if (!navigator.geolocation) {
+            weatherLocation.textContent = "Geolocation not supported";
+            manualLocation.style.display = 'block';
+            btnDetectLocation.disabled = false;
+            btnDetectLocation.textContent = "Detect My Location";
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+
+                try {
+                    const response = await fetch(
+                        `${LOCATION_API_URL}?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`
+                    );
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.detail || "Location/weather API failed");
+                    }
+
+                    console.log("Location + Weather:", data);
+                    showWeatherData(data);
+                } catch (error) {
+                    console.error("Location/weather error:", error);
+                    weatherLocation.textContent = "Could not load location";
+                    uiDesc.textContent = "Error loading data";
+                    manualLocation.style.display = 'block';
+                    showToast("Backend could not fetch location/weather.", "error");
+                } finally {
+                    btnDetectLocation.disabled = false;
+                    btnDetectLocation.textContent = "Detect My Location";
+                }
+            },
+            (error) => {
+                console.error("Geolocation error:", error);
+                weatherLocation.textContent = "Location permission denied";
+                manualLocation.style.display = 'block';
+                btnDetectLocation.disabled = false;
+                btnDetectLocation.textContent = "Detect My Location";
+                showToast("Please allow location access in your browser.", "warning");
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 15000,
+                maximumAge: 0
+            }
+        );
+    }
+
+    btnDetectLocation.addEventListener('click', detectLocationAndWeather);
+
+    btnSearchWeather.addEventListener('click', async () => {
+        const city = cityInput.value.trim();
+        if (!city) {
+            showToast("Please enter a city name.", "warning");
+            return;
+        }
+
+        weatherLocation.textContent = `Searching ${city}...`;
+        setWeatherLoading();
+
+        try {
+            const response = await fetch(
+                `${WEATHER_API_URL}?city=${encodeURIComponent(city)}`
+            );
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.detail || "Weather search failed");
+            }
+
+            showWeatherData(data);
+        } catch (error) {
+            console.error("Manual weather error:", error);
+            weatherLocation.textContent = "Location not found";
+            uiDesc.textContent = "Error loading data";
+            showToast("Could not find weather for that city.", "error");
+        }
+    });
+
+    cityInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            btnSearchWeather.click();
+        }
+    });
 
     // --- Mandi / Market Rates Feature ---
     const mandiSearchInput = document.getElementById('mandi-search');
@@ -819,5 +868,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial render
     loadHelplines();
+
+    // --- Login / Signup Form Switcher Logic ---
+    window.switchTab = function(tab) {
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+        const loginTab = document.getElementById('login-tab');
+        const signupTab = document.getElementById('signup-tab');
+        const formTitle = document.getElementById('form-title');
+
+        if (!loginForm) return;
+
+        if (tab === 'login') {
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+            loginTab.classList.add('active');
+            signupTab.classList.remove('active');
+            formTitle.textContent = 'Farmer Portal';
+        } else {
+            loginForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
+            signupTab.classList.add('active');
+            loginTab.classList.remove('active');
+            formTitle.textContent = 'Farmer Registration';
+        }
+    };
+
+    // Redirect to home website after login/signup
+    const loginForm = document.getElementById("login-form");
+    const signupForm = document.getElementById("signup-form");
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            window.location.hash = "#home";
+        });
+    }
+
+    if (signupForm) {
+        signupForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            window.location.hash = "#home";
+        });
+    }
 
 });

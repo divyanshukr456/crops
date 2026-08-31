@@ -26,6 +26,7 @@
                 <li class="nav-item"><a href="#mandi-section" class="nav-link">Mandi Rates</a></li>
                 <li class="nav-item"><a href="#schemes-section" class="nav-link">Govt Schemes</a></li>
                 <li class="nav-item"><a href="#helplines-section" class="nav-link">Helplines</a></li>
+                <li class="nav-item"><a href="#login" class="nav-link" style="color: #2e7d32; font-weight: bold;">Login</a></li>
             </ul>
 
             <div class="hamburger" id="hamburger">
@@ -48,6 +49,143 @@
             </div>
         </div>
     </header>
+
+    <!-- Login / Sign Up Section -->
+    <section class="login-page section" id="login">
+        <!-- Animated Background Elements -->
+        <div class="login-bg-shape shape-1"></div>
+        <div class="login-bg-shape shape-2"></div>
+        <div class="login-bg-shape shape-3"></div>
+        
+        <div class="login-wrapper glass-effect">
+            <!-- Brand panel -->
+            <aside class="login-brand">
+                <div class="brand-overlay"></div>
+                <div class="login-brand-content">
+                    <div class="login-brand-logo">
+                        <div class="logo-icon-anim">🌱</div> 
+                        <span>Farmer Helps</span>
+                    </div>
+                    <div class="login-brand-pitch">
+                        <h2>Smart Farming <br/>Starts Here.</h2>
+                        <p>Join thousands of farmers tracking weather, market rates, and crop health with cutting-edge AI.</p>
+                        <div class="login-crops">🌾 🚜 🌽 🐄 🍅</div>
+                    </div>
+                    <div class="login-stats">
+                        <div class="stat-item"><span class="ls-n">50k+</span><span class="ls-l">Farmers</span></div>
+                        <div class="stat-item"><span class="ls-n">200+</span><span class="ls-l">Mandis</span></div>
+                        <div class="stat-item"><span class="ls-n">24/7</span><span class="ls-l">Support</span></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Form panel -->
+            <div class="login-form-side">
+                <div class="card-header">
+                    <h2 id="form-title">Welcome Back</h2>
+                    <p class="login-sub" id="form-sub">Sign in to your farmer dashboard</p>
+                </div>
+
+                <div class="toggle-box">
+                    <button class="toggle-btn active" id="login-tab" onclick="switchTab('login')">Login</button>
+                    <button class="toggle-btn" id="signup-tab" onclick="switchTab('signup')">Sign Up</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form">
+                    <div class="form-group floating-group">
+                        <div class="input-wrap">
+                            <span class="input-ic">📧</span>
+                            <input type="text" id="login-email" class="floating-input" placeholder=" " required />
+                            <label for="login-email" class="floating-label">Mobile Number or Email</label>
+                        </div>
+                    </div>
+                    <div class="form-group floating-group">
+                        <div class="input-wrap">
+                            <span class="input-ic">🔒</span>
+                            <input type="password" id="login-password" class="floating-input" placeholder=" " required />
+                            <label for="login-password" class="floating-label">Password</label>
+                            <button type="button" class="pass-toggle" data-toggle aria-label="Show password">👁️</button>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <label class="checkbox-label">
+                            <input type="checkbox" /> 
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-link">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="submit-btn effect-btn">
+                        <span>Login to Dashboard</span>
+                        <span class="icon-right">→</span>
+                    </button>
+
+                    <div class="login-divider"><span>or continue with</span></div>
+                    <div class="social-row">
+                        <button type="button" class="social-btn google-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="social-icon"> Google
+                        </button>
+                        <button type="button" class="social-btn otp-btn">
+                            📱 OTP Login
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Signup Form -->
+                <form id="signup-form" class="hidden">
+                    <div class="form-group floating-group">
+                        <div class="input-wrap">
+                            <span class="input-ic">👤</span>
+                            <input type="text" id="signup-name" class="floating-input" placeholder=" " required />
+                            <label for="signup-name" class="floating-label">Full Name</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group floating-group">
+                            <div class="input-wrap">
+                                <span class="input-ic">📱</span>
+                                <input type="tel" id="signup-phone" class="floating-input" placeholder=" " required />
+                                <label for="signup-phone" class="floating-label">Mobile Number</label>
+                            </div>
+                        </div>
+                        <div class="form-group floating-group">
+                            <div class="input-wrap">
+                                <select id="signup-category" class="floating-select" required>
+                                    <option value="" disabled selected hidden></option>
+                                    <option value="crop">Crop Farming</option>
+                                    <option value="livestock">Livestock</option>
+                                    <option value="dairy">Dairy</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <label for="signup-category" class="floating-label select-label">Farming Type</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group floating-group">
+                        <div class="input-wrap">
+                            <span class="input-ic">📍</span>
+                            <input type="text" id="signup-location" class="floating-input" placeholder=" " />
+                            <label for="signup-location" class="floating-label">Farm Location (Village / District)</label>
+                        </div>
+                    </div>
+                    <div class="form-group floating-group">
+                        <div class="input-wrap">
+                            <span class="input-ic">🔒</span>
+                            <input type="password" id="signup-password" class="floating-input" placeholder=" " required />
+                            <label for="signup-password" class="floating-label">Create Password</label>
+                            <button type="button" class="pass-toggle" data-toggle aria-label="Show password">👁️</button>
+                        </div>
+                        <div class="pass-strength"><i id="pass-bar"></i></div>
+                        <span class="pass-hint" id="pass-hint">Use 8+ characters with letters &amp; numbers.</span>
+                    </div>
+                    <button type="submit" class="submit-btn effect-btn">
+                        <span>Create Account</span>
+                        <span class="icon-right">→</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
 
     <!-- AI Crop Disease Detector Section -->
     <section class="detector section" id="disease-detector">
@@ -152,8 +290,8 @@
             <div class="weather-card">
                 <div class="weather-header">
                     <div class="location-info">
-                        <span class="location-icon">📍</span>
-                        <h3 id="weather-location">Detecting location...</h3>
+                        📍 Location:
+                        <span id="location">Detecting...</span>
                     </div>
                     <button class="btn btn-outline btn-small" id="btn-detect-location">Detect My Location</button>
                 </div>
@@ -474,5 +612,57 @@
     <!-- Scripts -->
     <script src="route.js"></script>
     <script src="script.js"></script>
+
+    <!-- Login page enhancements (password show/hide, strength meter, subtitle sync) -->
+    <script>
+    (function () {
+        // Show / hide password
+        document.querySelectorAll('#login [data-toggle]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var inp = btn.parentElement.querySelector('input');
+                if (!inp) return;
+                var show = inp.type === 'password';
+                inp.type = show ? 'text' : 'password';
+                btn.textContent = show ? '🙈' : '👁️';
+            });
+        });
+
+        // Password strength meter
+        var pass = document.getElementById('signup-password');
+        var bar = document.getElementById('pass-bar');
+        var hint = document.getElementById('pass-hint');
+        if (pass && bar && hint) {
+            pass.addEventListener('input', function () {
+                var v = pass.value, s = 0;
+                if (v.length >= 8) s++;
+                if (/[A-Z]/.test(v) && /[a-z]/.test(v)) s++;
+                if (/\d/.test(v)) s++;
+                if (/[^A-Za-z0-9]/.test(v)) s++;
+                var pct = [0, 25, 55, 80, 100][s];
+                var colors = ['#e0e7d8', '#e53935', '#ff9800', '#9ccc65', '#2b7a30'];
+                var labels = [
+                    'Use 8+ characters with letters & numbers.',
+                    'Weak password', 'Fair password', 'Good password', 'Strong password 💪'
+                ];
+                bar.style.width = pct + '%';
+                bar.style.background = colors[s];
+                hint.textContent = labels[s];
+            });
+        }
+
+        // Keep subtitle in sync with the active tab
+        var sub = document.getElementById('form-sub');
+        var loginTab = document.getElementById('login-tab');
+        var signupTab = document.getElementById('signup-tab');
+        if (sub && loginTab && signupTab) {
+            loginTab.addEventListener('click', function () {
+                sub.textContent = 'Welcome back! Log in to your dashboard.';
+            });
+            signupTab.addEventListener('click', function () {
+                sub.textContent = 'Create your free farmer account in a minute.';
+            });
+        }
+    })();
+    </script>
 </body>
 </html>
