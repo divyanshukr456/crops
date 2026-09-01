@@ -5,3 +5,4 @@ python-dotenv
 requests
 # tensorflow==2.15.0  # Uncomment this when you are ready to load the .h5 model
 # Pillow              # Required if you do image processing with TensorFlow
+google-genai

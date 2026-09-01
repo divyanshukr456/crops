@@ -1,61 +1,119 @@
+/*
+ * Farmer Helps - Section Router
+ *
+ * IMPORTANT:
+ * Home is a real page/route. Crop Disease, Weather, Mandi Rates,
+ * Government Schemes and Helpline are separate routes.
+ * Farming Tips, Services, Quick Stats, Latest Updates and About
+ * belong to Home and must never appear on the other routes.
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
-    // Define the valid routes based on the section IDs
-    const routes = [
-        "home", 
-        "services",
-        "disease-detector", 
-        "weather-section", 
-        "mandi-section", 
-        "schemes-section", 
+    const MAIN_ROUTES = [
+        "home",
+        "disease-detector",
+        "weather-section",
+        "mandi-section",
+        "schemes-section",
         "helplines-section",
         "login"
     ];
 
-    // Function to handle route changes
-    function handleRouting() {
-        // Get the hash without the '#' symbol. Default to 'login' if empty.
-        let currentHash = window.location.hash.substring(1) || "login";
+    // These elements are part of Home and should be visible only on Home.
+    const HOME_CONTENT_SELECTOR = ".home-content";
 
-        // If the hash is not in our routes, default to login
-        if (!routes.includes(currentHash)) {
-            currentHash = "login";
-            window.location.hash = "#login";
+    // Optional home anchors. They still open Home, then scroll to the requested block.
+    const HOME_ANCHORS = new Set([
+        "services",
+        "quick-stats",
+        "farming-tips",
+        "updates",
+        "about"
+    ]);
+
+    function getRequestedHash() {
+        return window.location.hash.replace(/^#/, "").trim();
+    }
+
+    function setVisibility(element, visible) {
+        if (!element) return;
+
+        element.classList.toggle("active-route", visible);
+        element.classList.toggle("hidden-route", !visible);
+    }
+
+    function handleRouting() {
+        const requestedHash = getRequestedHash();
+        const currentHash = requestedHash || "home";
+
+        let routeToShow = currentHash;
+        let homeAnchor = null;
+
+        if (HOME_ANCHORS.has(currentHash)) {
+            routeToShow = "home";
+            homeAnchor = currentHash;
+        } else if (!MAIN_ROUTES.includes(currentHash)) {
+            routeToShow = "home";
         }
 
-        // 1. Hide all sections and show the active one
-        routes.forEach(route => {
-            const section = document.getElementById(route);
-            if (section) {
-                // If route is 'home' or 'services', show them together when hash is 'home'
-                const isHomeView = currentHash === "home" && (route === "home" || route === "services");
-                
-                if (route === currentHash || isHomeView) {
-                    section.classList.add("active-route");
-                    section.classList.remove("hidden-route");
-                } else {
-                    section.classList.remove("active-route");
-                    section.classList.add("hidden-route");
-                }
-            }
+        // 1. Hide every Home block first.
+        document.querySelectorAll(HOME_CONTENT_SELECTOR).forEach((element) => {
+            setVisibility(element, routeToShow === "home");
         });
 
-        // 2. Update navigation active state
+        // 2. Show exactly one standalone route.
+        MAIN_ROUTES.forEach((routeId) => {
+            if (routeId === "home") return;
+
+            const section = document.getElementById(routeId);
+            setVisibility(section, routeToShow === routeId);
+        });
+
+        // 3. Navigation active state.
         const navLinks = document.querySelectorAll(".nav-link");
-        navLinks.forEach(link => {
+        navLinks.forEach((link) => {
             link.classList.remove("active-nav");
-            // Check if the link's href matches the current hash
-            if (link.getAttribute("href") === `#${currentHash}`) {
+
+            const href = link.getAttribute("href") || "";
+            const target = href.replace(/^#/, "");
+
+            if (target === routeToShow || target === currentHash) {
                 link.classList.add("active-nav");
             }
         });
 
-        // 3. Scroll to top of the page smoothly on route change
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // 4. Scroll after the route is rendered.
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        if (routeToShow === "home" && homeAnchor) {
+            // Wait for the Home blocks to become visible before scrolling.
+            window.setTimeout(() => {
+                const target = document.getElementById(homeAnchor);
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+            }, 50);
+        }
+
+        // 5. Floating widgets are available on the app, not on Login.
+        const feedbackWidget = document.getElementById("feedback-widget");
+        const voiceFab = document.getElementById("voice-fab");
+        const isLogin = routeToShow === "login";
+
+        if (feedbackWidget) {
+            feedbackWidget.style.display = isLogin ? "none" : "block";
+        }
+
+        if (voiceFab) {
+            voiceFab.style.display = isLogin ? "none" : "flex";
+        }
+
+        // Keep the URL clean when an unknown hash is entered.
+        if (!MAIN_ROUTES.includes(currentHash) && !HOME_ANCHORS.has(currentHash)) {
+            history.replaceState(null, "", "#home");
+        }
     }
 
-    // Listen for hash changes (when user clicks nav links or uses back/forward buttons)
     window.addEventListener("hashchange", handleRouting);
-
-    // Run on initial load
     handleRouting();
 });

@@ -53,6 +53,28 @@ def get_weather(lat: float, lon: float):
 
     description, icon = _description(cloudcover, prec_type)
 
+    forecast = []
+    # 7Timer 'civil' gives 8 readings per day (every 3 hours)
+    for i in range(0, min(len(series), 40), 8):
+        day_data = series[i:i+8]
+        if not day_data:
+            break
+        
+        temps = [d.get("temp2m") for d in day_data if d.get("temp2m") is not None]
+        max_temp = max(temps) if temps else "--"
+        min_temp = min(temps) if temps else "--"
+        
+        mid_day = day_data[len(day_data)//2]
+        desc, f_icon = _description(mid_day.get("cloudcover"), mid_day.get("prec_type", "none"))
+        
+        forecast.append({
+            "day_index": i // 8,
+            "max_temp": max_temp,
+            "min_temp": min_temp,
+            "description": desc,
+            "icon": f_icon
+        })
+
     return {
         "temperature": f"{temp}°C" if temp is not None else "--°C",
         "description": description,
@@ -62,4 +84,5 @@ def get_weather(lat: float, lon: float):
         "precipitation_type": prec_type,
         "icon": icon,
         "timepoint": current.get("timepoint"),
+        "forecast": forecast,
     }

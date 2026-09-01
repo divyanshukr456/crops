@@ -3,8 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 import time
 from location import get_location, search_location
 from weather import get_weather as fetch_weather
+from voice import router as voice_router
+
 
 app = FastAPI(title="Farmer Helps API")
+app.include_router(voice_router)
 
 app.add_middleware(
     CORSMiddleware,

@@ -1,620 +1,738 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmer Helps | Smart Farming. Better Decisions. Healthy Crops.</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Farmer Helps | Smart Farming. Better Decisions. Healthy Crops.</title>
+<link href="style.css" rel="stylesheet"/>
+<!-- Google Fonts for typography -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 </head>
 <body>
-
-    <!-- Navigation Bar -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <span class="logo-icon">🌱</span> Farmer Helps
+<!-- Navigation Bar -->
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+<a class="nav-logo" data-i18n="nav.brand" href="#">
+<span class="logo-icon">🌱</span> Farmer Helps
             </a>
-            
-            <ul class="nav-menu" id="nav-menu">
-                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="#disease-detector" class="nav-link">Disease Detector</a></li>
-                <li class="nav-item"><a href="#weather-section" class="nav-link">Weather</a></li>
-                <li class="nav-item"><a href="#mandi-section" class="nav-link">Mandi Rates</a></li>
-                <li class="nav-item"><a href="#schemes-section" class="nav-link">Govt Schemes</a></li>
-                <li class="nav-item"><a href="#helplines-section" class="nav-link">Helplines</a></li>
-                <li class="nav-item"><a href="#login" class="nav-link" style="color: #2e7d32; font-weight: bold;">Login</a></li>
-            </ul>
+<ul class="nav-menu" id="nav-menu">
+<li class="nav-item"><a class="nav-link" data-i18n="nav.home" href="#home">Home</a></li>
+<li class="nav-item"><a class="nav-link" data-i18n="nav.disease" href="#disease-detector">Crop Disease</a></li>
+<li class="nav-item"><a class="nav-link" data-i18n="nav.weather" href="#weather-section">Weather</a></li>
+<li class="nav-item"><a class="nav-link" data-i18n="nav.mandi" href="#mandi-section">Mandi Rates</a></li>
+<li class="nav-item"><a class="nav-link" data-i18n="nav.schemes" href="#schemes-section">Schemes</a></li>
+<li class="nav-item"><a class="nav-link" data-i18n="nav.helpline" href="#helplines-section">Helpline</a></li>
+<li class="nav-item">
+<select aria-label="Language Selector" class="lang-selector" id="main-lang-selector">
+<option value="en">English</option>
+<option value="hi">हिंदी</option>
+</select>
+</li>
+</ul>
+<div class="hamburger" id="hamburger">
+<span class="bar"></span>
+<span class="bar"></span>
+<span class="bar"></span>
+</div>
+</div>
+</nav>
+<!-- Elegant Hero Section -->
+<section id="home" class="home-content">
+<header class="hero elegant-hero">
+<div class="container hero-container">
+<div class="hero-content-left">
+<span class="hero-badge" data-i18n="hero.badge">🌾 Smart Technology for Smart Farming</span>
+<h1 class="hero-title" data-i18n="hero.title">Helping Farmers Grow Better, Every Day.</h1>
+<p class="hero-subtitle" data-i18n="hero.subtitle">Farmer Helps is your digital companion for modern agriculture. Instantly detect crop diseases, track live mandi prices, get hyper-local weather alerts, and access vital government schemes—all in one place.</p>
+<div class="hero-buttons">
+<a class="btn btn-primary" data-i18n="hero.btn.disease" href="#disease-detector">🌱 Detect Crop Disease</a>
+<a class="btn btn-secondary" data-i18n="hero.btn.services" href="#services">Explore Services</a>
+</div>
+</div>
+<div class="hero-visual-right">
+<!-- Farming Themed Visual -->
+<div class="hero-image-wrapper">
+<!-- Replace with a real image if desired, using a soft green gradient for now -->
+<div class="hero-image-placeholder">
+<span class="hero-main-icon">🚜</span>
+</div>
+<!-- Floating Cards -->
+<div class="floating-card fc-1">
+<span class="fc-icon">🌦️</span>
+<div class="fc-text">
+<strong data-i18n="hero.card1.title">Weather</strong>
+<span data-i18n="hero.card1.desc">Live Updates</span>
+</div>
+</div>
+<div class="floating-card fc-2">
+<span class="fc-icon">🌾</span>
+<div class="fc-text">
+<strong data-i18n="hero.card2.title">Crop Health</strong>
+<span data-i18n="hero.card2.desc">AI Detection</span>
+</div>
+</div>
+<div class="floating-card fc-3">
+<span class="fc-icon">₹</span>
+<div class="fc-text">
+<strong data-i18n="hero.card3.title">Mandi Prices</strong>
+<span data-i18n="hero.card3.desc">Daily Rates</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Quick Statistics Section -->
+<section class="quick-stats-section home-content" id="quick-stats">
+<div class="container">
+<div class="stats-grid">
+<div class="stat-card">
+<h3>50+</h3>
+<p data-i18n="stats.crop.desc">Crop Types</p>
+</div>
+<div class="stat-card">
+<h3>24/7</h3>
+<p data-i18n="stats.weather.desc">Weather Updates</p>
+</div>
+<div class="stat-card">
+<h3>100+</h3>
+<p data-i18n="stats.mandi.desc">Mandi Locations</p>
+</div>
+<div class="stat-card">
+<h3>50+</h3>
+<p data-i18n="stats.schemes.desc">Government Schemes</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Services Grid -->
+<section class="services-section section home-content" id="services">
+<div class="container">
+<div class="section-header">
+<h2 data-i18n="services.title">Our Core Services</h2>
+<p data-i18n="services.desc">Everything you need for successful farming, in one place.</p>
+</div>
+<div class="services-grid">
+<a class="service-card" href="#disease-detector">
+<div class="service-icon">🌱</div>
+<h3 data-i18n="services.s1.title">Crop Disease Detection</h3>
+<p data-i18n="services.s1.desc">Instantly identify diseases using AI.</p>
+</a>
+<a class="service-card" href="#weather-section">
+<div class="service-icon">🌦️</div>
+<h3 data-i18n="services.s2.title">Weather Updates</h3>
+<p data-i18n="services.s2.desc">Real-time &amp; 5-day forecasts.</p>
+</a>
+<a class="service-card" href="#mandi-section">
+<div class="service-icon">₹</div>
+<h3 data-i18n="services.s3.title">Mandi Rates</h3>
+<p data-i18n="services.s3.desc">Daily prices across Indian markets.</p>
+</a>
+<a class="service-card" href="#schemes-section">
+<div class="service-icon">📋</div>
+<h3 data-i18n="services.s4.title">Government Schemes</h3>
+<p data-i18n="services.s4.desc">Find subsidies and financial aid.</p>
+</a>
+<a class="service-card" href="#home">
+<div class="service-icon">💡</div>
+<h3 data-i18n="services.s5.title">Farming Tips</h3>
+<p data-i18n="services.s5.desc">Expert advice and best practices.</p>
+</a>
+<a class="service-card" href="#helplines-section">
+<div class="service-icon">📞</div>
+<h3 data-i18n="services.s6.title">Farmer Helpline</h3>
+<p data-i18n="services.s6.desc">Direct support from agriculture experts.</p>
+</a>
+</div>
+</div>
+</section>
 
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
+<!-- Farming Tips -->
+<div class="farming-tips-home home-content" id="farming-tips">
+<div class="container">
+<div class="section-header">
+<h2 data-i18n="tips.title">Farming Tips &amp; Best Practices</h2>
+<p data-i18n="tips.desc">Expert advice to help you grow healthier, more profitable crops.</p>
+</div>
+<div class="tips-grid">
+<div class="tip-card">
+<div class="tip-icon">🌱</div>
+<div class="tip-content">
+<h3 data-i18n="tips.t1.title">Healthy Crop Practices</h3>
+<p data-i18n="tips.t1.desc">Rotate crops annually to break pest cycles and prevent soil depletion.</p>
+</div>
+</div>
+<div class="tip-card">
+<div class="tip-icon">💧</div>
+<div class="tip-content">
+<h3 data-i18n="tips.t2.title">Smart Irrigation</h3>
+<p data-i18n="tips.t2.desc">Use drip irrigation in dry months to save water and deliver nutrients directly to roots.</p>
+</div>
+</div>
+<div class="tip-card">
+<div class="tip-icon">🌿</div>
+<div class="tip-content">
+<h3 data-i18n="tips.t3.title">Soil Health</h3>
+<p data-i18n="tips.t3.desc">Incorporate organic compost before sowing to improve soil structure and moisture retention.</p>
+</div>
+</div>
+<div class="tip-card">
+<div class="tip-icon">🐛</div>
+<div class="tip-content">
+<h3 data-i18n="tips.t4.title">Pest Management</h3>
+<p data-i18n="tips.t4.desc">Use neem oil extract as a natural, non-toxic deterrent for early-stage pest control.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    <!-- Hero Section -->
-    <header class="hero" id="home">
-        <div class="hero-content">
-            <span class="made-in-india">🇮🇳 Made for Indian Farmers</span>
-            <h1 class="hero-title">Your Smart Farming Assistant</h1>
-            <p class="hero-subtitle">Detect crop diseases, check weather, view mandi rates and discover government schemes — all in one place.</p>
-            <div class="hero-buttons">
-                <a href="#disease-detector" class="btn btn-primary">Detect Crop Disease</a>
-                <a href="#services" class="btn btn-secondary">Explore Services</a>
-            </div>
-        </div>
-    </header>
+</section>
 
-    <!-- Login / Sign Up Section -->
-    <section class="login-page section" id="login">
-        <!-- Animated Background Elements -->
-        <div class="login-bg-shape shape-1"></div>
-        <div class="login-bg-shape shape-2"></div>
-        <div class="login-bg-shape shape-3"></div>
-        
-        <div class="login-wrapper glass-effect">
-            <!-- Brand panel -->
-            <aside class="login-brand">
-                <div class="brand-overlay"></div>
-                <div class="login-brand-content">
-                    <div class="login-brand-logo">
-                        <div class="logo-icon-anim">🌱</div> 
-                        <span>Farmer Helps</span>
-                    </div>
-                    <div class="login-brand-pitch">
-                        <h2>Smart Farming <br/>Starts Here.</h2>
-                        <p>Join thousands of farmers tracking weather, market rates, and crop health with cutting-edge AI.</p>
-                        <div class="login-crops">🌾 🚜 🌽 🐄 🍅</div>
-                    </div>
-                    <div class="login-stats">
-                        <div class="stat-item"><span class="ls-n">50k+</span><span class="ls-l">Farmers</span></div>
-                        <div class="stat-item"><span class="ls-n">200+</span><span class="ls-l">Mandis</span></div>
-                        <div class="stat-item"><span class="ls-n">24/7</span><span class="ls-l">Support</span></div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- Form panel -->
-            <div class="login-form-side">
-                <div class="card-header">
-                    <h2 id="form-title">Welcome Back</h2>
-                    <p class="login-sub" id="form-sub">Sign in to your farmer dashboard</p>
-                </div>
-
-                <div class="toggle-box">
-                    <button class="toggle-btn active" id="login-tab" onclick="switchTab('login')">Login</button>
-                    <button class="toggle-btn" id="signup-tab" onclick="switchTab('signup')">Sign Up</button>
-                </div>
-
-                <!-- Login Form -->
-                <form id="login-form">
-                    <div class="form-group floating-group">
-                        <div class="input-wrap">
-                            <span class="input-ic">📧</span>
-                            <input type="text" id="login-email" class="floating-input" placeholder=" " required />
-                            <label for="login-email" class="floating-label">Mobile Number or Email</label>
-                        </div>
-                    </div>
-                    <div class="form-group floating-group">
-                        <div class="input-wrap">
-                            <span class="input-ic">🔒</span>
-                            <input type="password" id="login-password" class="floating-input" placeholder=" " required />
-                            <label for="login-password" class="floating-label">Password</label>
-                            <button type="button" class="pass-toggle" data-toggle aria-label="Show password">👁️</button>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <label class="checkbox-label">
-                            <input type="checkbox" /> 
-                            Remember me
-                        </label>
-                        <a href="#" class="forgot-link">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="submit-btn effect-btn">
-                        <span>Login to Dashboard</span>
-                        <span class="icon-right">→</span>
-                    </button>
-
-                    <div class="login-divider"><span>or continue with</span></div>
-                    <div class="social-row">
-                        <button type="button" class="social-btn google-btn">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="social-icon"> Google
+<!-- Login / Sign Up Section -->
+<section class="login-page section" id="login">
+<!-- Animated Background Elements -->
+<div class="login-bg-shape shape-1"></div>
+<div class="login-bg-shape shape-2"></div>
+<div class="login-bg-shape shape-3"></div>
+<div class="login-wrapper glass-effect">
+<!-- Brand panel -->
+<aside class="login-brand">
+<div class="brand-overlay"></div>
+<div class="login-brand-content">
+<div class="login-brand-logo">
+<div class="logo-icon-anim">🌱</div>
+<span>Farmer Helps</span>
+</div>
+<div class="login-brand-pitch">
+<h2 data-i18n="login.brand.pitch.title">Smart Farming <br/>Starts Here.</h2>
+<p data-i18n="login.brand.pitch.desc">Join thousands of farmers tracking weather, market rates, and crop health with cutting-edge AI.</p>
+<div class="login-crops">🌾 🚜 🌽 🐄 🍅</div>
+</div>
+<div class="login-stats">
+<div class="stat-item"><span class="ls-n">50k+</span><span class="ls-l" data-i18n="login.stat1">Farmers</span></div>
+<div class="stat-item"><span class="ls-n">200+</span><span class="ls-l" data-i18n="login.stat2">Mandis</span></div>
+<div class="stat-item"><span class="ls-n">24/7</span><span class="ls-l" data-i18n="login.stat3">Support</span></div>
+</div>
+</div>
+</aside>
+<!-- Form panel -->
+<div class="login-form-side">
+<div class="card-header">
+<h2 data-i18n="login.title" id="form-title">Welcome Back</h2>
+<p class="login-sub" data-i18n="login.sub" id="form-sub">Sign in to your farmer dashboard</p>
+</div>
+<div class="toggle-box">
+<button class="toggle-btn active" data-i18n="login.tab.login" id="login-tab" onclick="switchTab('login')">Login</button>
+<button class="toggle-btn" data-i18n="login.tab.signup" id="signup-tab" onclick="switchTab('signup')">Sign Up</button>
+</div>
+<!-- Login Form -->
+<form id="login-form">
+<div class="form-group floating-group">
+<div class="input-wrap">
+<span class="input-ic">📧</span>
+<input class="floating-input" id="login-email" placeholder=" " required="" type="text"/>
+<label class="floating-label" data-i18n="login.lbl.email" for="login-email">Mobile Number or Email</label>
+</div>
+</div>
+<div class="form-group floating-group">
+<div class="input-wrap">
+<span class="input-ic">🔒</span>
+<input class="floating-input" id="login-password" placeholder=" " required="" type="password"/>
+<label class="floating-label" data-i18n="login.lbl.password" for="login-password">Password</label>
+<button aria-label="Show password" class="pass-toggle" data-toggle="" type="button">👁️</button>
+</div>
+</div>
+<div class="actions">
+<label class="checkbox-label">
+<input type="checkbox"/>
+<span data-i18n="login.lbl.remember">Remember me</span>
+</label>
+<a class="forgot-link" data-i18n="login.btn.forgot" href="#">Forgot Password?</a>
+</div>
+<button class="submit-btn effect-btn" type="submit">
+<span data-i18n="login.btn.submit">Login to Dashboard</span>
+<span class="icon-right">→</span>
+</button>
+<div class="login-divider"><span data-i18n="login.divider">or continue with</span></div>
+<div class="social-row">
+<button class="social-btn google-btn" type="button">
+<img alt="Google" class="social-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/> Google
                         </button>
-                        <button type="button" class="social-btn otp-btn">
-                            📱 OTP Login
-                        </button>
-                    </div>
-                </form>
+<button class="social-btn otp-btn" type="button">
+<span data-i18n="login.btn.otp">📱 OTP Login</span>
+</button>
+</div>
+</form>
+<!-- Signup Form -->
+<form class="hidden" id="signup-form">
+<div class="form-group floating-group">
+<div class="input-wrap">
+<span class="input-ic">👤</span>
+<input class="floating-input" id="signup-name" placeholder=" " required="" type="text"/>
+<label class="floating-label" data-i18n="signup.lbl.name" for="signup-name">Full Name</label>
+</div>
+</div>
+<div class="form-row">
+<div class="form-group floating-group">
+<div class="input-wrap">
+<span class="input-ic">📱</span>
+<input class="floating-input" id="signup-phone" placeholder=" " required="" type="tel"/>
+<label class="floating-label" data-i18n="signup.lbl.phone" for="signup-phone">Mobile Number</label>
+</div>
+</div>
+<div class="form-group floating-group">
+<div class="input-wrap">
+<select class="floating-select" id="signup-category" required="">
+<option disabled="" hidden="" selected="" value=""></option>
+<option data-i18n="signup.lbl.cat.crop" value="crop">Crop Farming</option>
+<option data-i18n="signup.lbl.cat.livestock" value="livestock">Livestock</option>
+<option data-i18n="signup.lbl.cat.dairy" value="dairy">Dairy</option>
+<option data-i18n="signup.lbl.cat.other" value="other">Other</option>
+</select>
+<label class="floating-label select-label" data-i18n="signup.lbl.category" for="signup-category">Farming Type</label>
+</div>
+</div>
+</div>
+<div class="form-group floating-group">
+<div class="input-wrap">
+<span class="input-ic">📍</span>
+<input class="floating-input" id="signup-location" placeholder=" " type="text"/>
+<label class="floating-label" data-i18n="signup.lbl.location" for="signup-location">Farm Location (Village / District)</label>
+</div>
+</div>
+<div class="form-group floating-group">
+<div class="input-wrap">
+<span class="input-ic">🔒</span>
+<input class="floating-input" id="signup-password" placeholder=" " required="" type="password"/>
+<label class="floating-label" data-i18n="signup.lbl.pass" for="signup-password">Create Password</label>
+<button aria-label="Show password" class="pass-toggle" data-toggle="" type="button">👁️</button>
+</div>
+<div class="pass-strength"><i id="pass-bar"></i></div>
+<span class="pass-hint" data-i18n="signup.pass.hint" id="pass-hint">Use 8+ characters with letters &amp; numbers.</span>
+</div>
+<button class="submit-btn effect-btn" type="submit">
+<span data-i18n="signup.btn.submit">Create Account</span>
+<span class="icon-right">→</span>
+</button>
+</form>
+</div>
+</div>
+</section>
 
-                <!-- Signup Form -->
-                <form id="signup-form" class="hidden">
-                    <div class="form-group floating-group">
-                        <div class="input-wrap">
-                            <span class="input-ic">👤</span>
-                            <input type="text" id="signup-name" class="floating-input" placeholder=" " required />
-                            <label for="signup-name" class="floating-label">Full Name</label>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group floating-group">
-                            <div class="input-wrap">
-                                <span class="input-ic">📱</span>
-                                <input type="tel" id="signup-phone" class="floating-input" placeholder=" " required />
-                                <label for="signup-phone" class="floating-label">Mobile Number</label>
-                            </div>
-                        </div>
-                        <div class="form-group floating-group">
-                            <div class="input-wrap">
-                                <select id="signup-category" class="floating-select" required>
-                                    <option value="" disabled selected hidden></option>
-                                    <option value="crop">Crop Farming</option>
-                                    <option value="livestock">Livestock</option>
-                                    <option value="dairy">Dairy</option>
-                                    <option value="other">Other</option>
-                                </select>
-                                <label for="signup-category" class="floating-label select-label">Farming Type</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group floating-group">
-                        <div class="input-wrap">
-                            <span class="input-ic">📍</span>
-                            <input type="text" id="signup-location" class="floating-input" placeholder=" " />
-                            <label for="signup-location" class="floating-label">Farm Location (Village / District)</label>
-                        </div>
-                    </div>
-                    <div class="form-group floating-group">
-                        <div class="input-wrap">
-                            <span class="input-ic">🔒</span>
-                            <input type="password" id="signup-password" class="floating-input" placeholder=" " required />
-                            <label for="signup-password" class="floating-label">Create Password</label>
-                            <button type="button" class="pass-toggle" data-toggle aria-label="Show password">👁️</button>
-                        </div>
-                        <div class="pass-strength"><i id="pass-bar"></i></div>
-                        <span class="pass-hint" id="pass-hint">Use 8+ characters with letters &amp; numbers.</span>
-                    </div>
-                    <button type="submit" class="submit-btn effect-btn">
-                        <span>Create Account</span>
-                        <span class="icon-right">→</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
+<!-- AI Crop Disease Detector Section -->
+<section class="detector-section section" id="disease-detector">
+<div class="container">
+<div class="section-header">
+<h2 data-i18n="ai.title">Protect Your Crops with AI</h2>
+<p data-i18n="ai.desc">Upload a photo of a sick plant, and our AI will instantly identify the disease and provide actionable solutions.</p>
+</div>
+<div class="ai-detector-box">
+<!-- Upload Area -->
+<div class="ai-upload-area" id="ai-upload-area">
+<div class="upload-dashed-box" id="drag-drop-zone">
+<div class="upload-icon">📸</div>
+<h3 data-i18n="ai.upload.h3">Drag &amp; drop an image here</h3>
+<p data-i18n="ai.upload.p">or click to browse from your device</p>
+<input accept="image/*" hidden="" id="image-upload" type="file"/>
+<div class="upload-buttons">
+<button class="btn btn-primary" data-i18n="ai.btn.choose" id="btn-choose-image">Choose Image</button>
+<button class="btn btn-outline" data-i18n="ai.btn.camera" id="btn-use-camera">Use Camera</button>
+</div>
+</div>
+</div>
+<!-- Preview Area -->
+<div class="ai-preview-area" id="ai-preview-area" style="display: none;">
+<div class="image-preview-wrapper">
+<img alt="Crop Preview" id="image-preview" src=""/>
+<button class="btn-close-preview" id="btn-close-preview">✕</button>
+</div>
+<button class="btn btn-primary btn-large w-100" id="btn-analyze">
+<span data-i18n="ai.btn.analyze">🌱 Analyze Crop</span>
+</button>
+</div>
+<!-- Loading Animation Area -->
+<div class="ai-loading-area" id="ai-loading-area" style="display: none;">
+<div class="scanner-container">
+<img alt="Scanning Crop" id="image-scanning" src=""/>
+<div class="scanner-line"></div>
+</div>
+<h3 class="loading-text" data-i18n="ai.loading.h3">Analyzing plant health...</h3>
+<p data-i18n="ai.loading.p">Our AI is comparing your image against 50,000+ crop diseases.</p>
+</div>
+<!-- Result Area -->
+<div class="ai-result-area" id="ai-result-area" style="display: none;">
+<div class="result-header">
+<div class="result-badge"><span data-i18n="ai.result.conf">AI Confidence:</span> <span id="res-confidence">94%</span></div>
+<h2 class="result-disease" id="res-disease">Early Blight</h2>
+<p class="result-crop"><span data-i18n="ai.result.crop">Crop detected:</span> <strong id="res-crop">Tomato</strong></p>
+</div>
+<div class="result-progress-container">
+<div class="progress-bar-bg">
+<div class="progress-bar-fill" id="res-progress" style="width: 94%;"></div>
+</div>
+</div>
+<div class="result-action-box">
+<h3 data-i18n="ai.result.action.title">Recommended Action</h3>
+<p id="res-action">Remove affected leaves immediately and apply a copper-based fungicide to prevent further spread.</p>
+</div>
+<button class="btn btn-outline w-100 mt-20" data-i18n="ai.btn.reset" id="btn-reset-detector">Scan Another Plant</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Elegant Weather Dashboard Section -->
+<section class="weather-dashboard section" id="weather-section">
+<div class="container">
+<div class="section-header">
+<h2 data-i18n="weather.title">Live Farm Weather</h2>
+<p data-i18n="weather.desc">Plan your day with hyper-local forecasts and real-time conditions.</p>
+</div>
+<div class="location-detect-wrapper" style="text-align: center; margin-bottom: 40px;">
+<button class="btn btn-primary btn-large" data-i18n="weather.btn.detect" id="btn-detect-location">
+<span data-i18n="weather.btn.detect">📍 Detect My Location</span>
+</button>
+<p class="privacy-note" data-i18n="weather.privacy" style="font-size: 0.85rem; color: #666; margin-top: 10px;">
+<span data-i18n="weather.privacy">Your location is used only to provide local weather and location information.</span>
+</p>
+<div class="location-error" id="location-error-msg" style="display: none; color: #F44336; margin-top: 15px; font-weight: 600;"></div>
+<!-- Full Location Card (Hidden by default) -->
+<div class="full-location-card" id="full-location-card" style="display: none; text-align: left; margin: 30px auto 0; max-width: 600px;">
+<div class="loc-card-header">
+<span class="loc-icon">📍</span>
+<div class="loc-title">
+<h3 data-i18n="weather.loc.title">Your Location</h3>
+<h2 id="loc-display-name"></h2>
+<p id="loc-state-country"></p>
+</div>
+</div>
+<div class="loc-card-body">
+<div class="loc-row" id="loc-row-area">
+<strong data-i18n="weather.loc.area">📍 Area</strong>
+<span id="loc-area"></span>
+</div>
+<div class="loc-row" id="loc-row-street">
+<strong data-i18n="weather.loc.street">🏠 Street</strong>
+<span id="loc-street"></span>
+</div>
+<div class="loc-row" id="loc-row-pin">
+<strong data-i18n="weather.loc.pin">📮 PIN Code</strong>
+<span id="loc-pin"></span>
+</div>
+<div class="loc-row" id="loc-row-city">
+<strong data-i18n="weather.loc.city">🏙️ City</strong>
+<span id="loc-city"></span>
+</div>
+<div class="loc-row" id="loc-row-district">
+<strong data-i18n="weather.loc.district">🗺️ District</strong>
+<span id="loc-district"></span>
+</div>
+<div class="loc-row" id="loc-row-state">
+<strong data-i18n="weather.loc.state">🇮🇳 State</strong>
+<span id="loc-state"></span>
+</div>
+<div class="loc-row" id="loc-row-near" style="display: none;">
+<strong data-i18n="weather.loc.near">📌 Near</strong>
+<span id="loc-near">Nearby location</span>
+</div>
+<div class="loc-row loc-coords">
+<strong data-i18n="weather.loc.coords">📌 Coordinates</strong>
+<span id="loc-coords"></span>
+</div>
+</div>
+<div class="loc-status-success">
+<span data-i18n="weather.loc.success">✅ Location detected successfully</span>
+</div>
+</div>
+</div>
+<div class="weather-dashboard-card">
+<div class="weather-top-row">
+<div class="weather-current-temp">
+<div class="weather-icon-large" id="weather-icon">--</div>
+<div class="temp-display">
+<span class="temp-val" id="weather-temp">--</span>
+<span class="temp-unit" id="weather-unit"></span>
+</div>
+<div class="temp-desc">
+<h3 id="weather-condition">--</h3>
+<p id="weather-location"></p>
+</div>
+</div>
+<div class="weather-metrics">
+<div class="metric-box">
+<span class="metric-icon">💧</span>
+<div class="metric-info">
+<span data-i18n="weather.metrics.humidity">Humidity</span>
+<strong id="weather-humidity">--</strong>
+</div>
+</div>
+<div class="metric-box">
+<span class="metric-icon">💨</span>
+<div class="metric-info">
+<span data-i18n="weather.metrics.wind">Wind</span>
+<strong id="weather-wind">--</strong>
+</div>
+</div>
+<div class="metric-box">
+<span class="metric-icon">🌧️</span>
+<div class="metric-info">
+<span data-i18n="weather.metrics.rain">Rain Prob.</span>
+<strong id="weather-rain">--</strong>
+</div>
+</div>
+</div>
+</div>
+<div class="weather-forecast-row">
+<h3 data-i18n="weather.forecast.title">5-Day Forecast</h3>
+<div class="forecast-grid" id="weather-forecast-grid">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Elegant Mandi Rates Section -->
+<section class="mandi-dashboard section" id="mandi-section">
+<div class="container">
+<div class="section-header">
+<h2 data-i18n="mandi.title">Live Mandi Rates</h2>
+<p data-i18n="mandi.desc">Track agricultural market prices across India to get the best value for your harvest.</p>
+</div>
+<div class="mandi-container">
+<div class="mandi-filters">
+<input class="mandi-search-input" data-i18n-placeholder="mandi.search" id="mandi-search-mock" placeholder="🔍 Search crop or mandi..." type="text"/>
+<select class="mandi-select" id="mandi-state-mock">
+<option data-i18n="mandi.state.all" value="">All States</option>
+<option value="Maharashtra">Maharashtra</option>
+<option value="Punjab">Punjab</option>
+<option value="Gujarat">Gujarat</option>
+</select>
+<select class="mandi-select" id="mandi-district-mock">
+<option data-i18n="mandi.district.all" value="">All Districts</option>
+<option value="Nashik">Nashik</option>
+<option value="Ludhiana">Ludhiana</option>
+<option value="Surat">Surat</option>
+</select>
+<select class="mandi-select" id="mandi-crop-mock">
+<option data-i18n="mandi.crop.all" value="">All Crops</option>
+<option value="Tomato">Tomato</option>
+<option value="Wheat">Wheat</option>
+<option value="Cotton">Cotton</option>
+</select>
+</div>
+<div class="mandi-table-wrapper">
+<table class="mandi-elegant-table">
+<thead>
+<tr>
+<th data-i18n="mandi.th.crop">Crop</th>
+<th data-i18n="mandi.th.mandi">Mandi (District, State)</th>
+<th data-i18n="mandi.th.price">Price (₹ / Quintal)</th>
+<th data-i18n="mandi.th.trend">Trend</th>
+</tr>
+</thead>
+<tbody id="mandi-tbody-mock">
+<!-- Populated by JS -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<!-- Government Schemes Section -->
+<section class="schemes-section section" id="schemes-section">
+<div class="container">
+<div class="section-header">
+<h2 data-i18n="schemes.title">Government Schemes</h2>
+<p data-i18n="schemes.desc">Discover financial aid, subsidies, and agricultural schemes made for you.</p>
+</div>
+<div class="schemes-grid">
+<div class="scheme-card">
+<div class="scheme-icon">🏛️</div>
+<h3 data-i18n="schemes.s1.title">PM-KISAN</h3>
+<p data-i18n="schemes.s1.desc">Direct income support of ₹6,000 per year to all landholding farmer families.</p>
+<a class="btn btn-outline btn-small" data-i18n="schemes.btn.learn" href="#">Learn More</a>
+</div>
+<div class="scheme-card">
+<div class="scheme-icon">🛡️</div>
+<h3 data-i18n="schemes.s2.title">Pradhan Mantri Fasal Bima Yojana</h3>
+<p data-i18n="schemes.s2.desc">Comprehensive crop insurance to provide financial support against crop loss.</p>
+<a class="btn btn-outline btn-small" data-i18n="schemes.btn.learn" href="#">Learn More</a>
+</div>
+<div class="scheme-card">
+<div class="scheme-icon">💳</div>
+<h3 data-i18n="schemes.s3.title">Kisan Credit Card</h3>
+<p data-i18n="schemes.s3.desc">Timely access to credit for cultivation needs with flexible repayment.</p>
+<a class="btn btn-outline btn-small" data-i18n="schemes.btn.learn" href="#">Learn More</a>
+</div>
+<div class="scheme-card">
+<div class="scheme-icon">🧪</div>
+<h3 data-i18n="schemes.s4.title">Soil Health Card</h3>
+<p data-i18n="schemes.s4.desc">Nutrient management recommendations to realize higher yields at lower cost.</p>
+<a class="btn btn-outline btn-small" data-i18n="schemes.btn.learn" href="#">Learn More</a>
+</div>
+<div class="scheme-card">
+<div class="scheme-icon">📜</div>
+<h3 data-i18n="schemes.s5.title">Other Agricultural Schemes</h3>
+<p data-i18n="schemes.s5.desc">Explore subsidies for irrigation, machinery, and organic farming.</p>
+<a class="btn btn-outline btn-small" data-i18n="schemes.btn.all" href="#">View All Schemes</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Farmer Helpline CTA Section -->
+<section class="helpline-cta section" id="helplines-section">
+<div class="container">
+<div class="cta-box">
+<div class="cta-text">
+<h2 data-i18n="help.title">Need Immediate Assistance?</h2>
+<p data-i18n="help.desc">Direct support from agricultural experts and emergency response teams is just a tap away.</p>
+</div>
+<div class="cta-buttons">
+<a class="btn btn-light cta-btn" href="tel:18001801551">
+<span class="cta-icon">📞</span> <span data-i18n="help.b1">Kisan Call Centre</span>
+</a>
+<a class="btn btn-light cta-btn" href="tel:1551">
+<span class="cta-icon">🚜</span> <span data-i18n="help.b2">Agriculture Helpline</span>
+</a>
+<a class="btn btn-outline-light cta-btn" href="tel:112">
+<span class="cta-icon">🚨</span> <span data-i18n="help.b3">Emergency Support</span>
+</a>
+</div>
+</div>
+</div>
+</section>
 
-    <!-- AI Crop Disease Detector Section -->
-    <section class="detector section" id="disease-detector">
-        <div class="container">
-            <div class="section-header">
-                <h2>AI Crop Disease Detector</h2>
-                <p>Upload a photo of your crop or use your camera to check for possible diseases.</p>
-            </div>
-
-            <!-- Input Options -->
-            <div class="detector-options" id="detector-options">
-                <div class="detector-card" id="upload-option">
-                    <div class="detector-icon">📁</div>
-                    <h3>Upload Photo</h3>
-                    <p>Select an image from your device</p>
-                    <input type="file" id="image-upload" accept="image/*" hidden>
-                    <button class="btn btn-outline" id="btn-trigger-upload">Select Image</button>
-                </div>
-
-                <div class="detector-card" id="camera-option">
-                    <div class="detector-icon">📷</div>
-                    <h3>Use Camera</h3>
-                    <p>Take a picture of the affected leaf</p>
-                    <button class="btn btn-outline" id="btn-trigger-camera">Open Camera</button>
-                </div>
-            </div>
-
-            <!-- Preview & Action Area (Hidden by default) -->
-            <div class="preview-area" id="preview-area" style="display: none;">
-                <div class="preview-container">
-                    <!-- Image Preview -->
-                    <div class="image-preview-wrapper" id="image-preview-wrapper" style="display: none;">
-                        <img id="image-preview" src="" alt="Crop Preview">
-                        <p id="file-name" class="file-name">filename.jpg</p>
-                        <div class="preview-actions">
-                            <button class="btn btn-outline" id="btn-replace-image">Replace</button>
-                            <button class="btn btn-primary" id="btn-analyze">Analyze Photo</button>
-                        </div>
-                    </div>
-
-                    <!-- Camera Stream -->
-                    <div class="camera-wrapper" id="camera-wrapper" style="display: none;">
-                        <video id="camera-stream" autoplay playsinline></video>
-                        <div class="preview-actions">
-                            <button class="btn btn-outline" id="btn-cancel-camera">Cancel</button>
-                            <button class="btn btn-primary" id="btn-capture">Capture Photo</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Result Card (Hidden by default) -->
-            <div class="result-card" id="result-card" style="display: none;">
-                <div class="result-header">
-                    <h3>Analysis Result</h3>
-                    <span class="demo-badge" id="demo-badge" style="display: none;">Demo prediction — connect your trained AI model for real result.</span>
-                </div>
-                
-                <div class="result-grid">
-                    <div class="result-item">
-                        <span class="result-label">Crop</span>
-                        <span class="result-value" id="res-crop">Wheat</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Disease</span>
-                        <span class="result-value danger" id="res-disease">Yellow Rust</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Confidence</span>
-                        <span class="result-value" id="res-confidence">94%</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="result-label">Severity</span>
-                        <span class="result-value warning" id="res-severity">High</span>
-                    </div>
-                </div>
-
-                <div class="result-details">
-                    <h4>Explanation</h4>
-                    <p id="res-explanation">Yellow stripes appearing on leaves indicate a fungal infection.</p>
-                    
-                    <h4>Recommended Action</h4>
-                    <p id="res-action">Apply Propiconazole fungicide immediately.</p>
-                    
-                    <h4>Prevention Tips</h4>
-                    <p id="res-prevention">Use rust-resistant varieties for the next season.</p>
-                </div>
-                
-                <button class="btn btn-outline" id="btn-reset-detector" style="margin-top: 20px;">Analyze Another Image</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Weather & Location Section -->
-    <section class="weather section" id="weather-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Weather for Your Farm</h2>
-                <p>Get real-time weather updates to plan your farming activities better.</p>
-            </div>
-
-            <div class="weather-card">
-                <div class="weather-header">
-                    <div class="location-info">
-                        📍 Location:
-                        <span id="location">Detecting...</span>
-                    </div>
-                    <button class="btn btn-outline btn-small" id="btn-detect-location">Detect My Location</button>
-                </div>
-                
-
-                <!-- Manual Location Input (Hidden by default) -->
-                <div class="manual-location" id="manual-location" style="display: none;">
-                    <p>Location access denied. Please enter your city manually:</p>
-                    <div class="location-input-group">
-                        <input type="text" id="city-input" placeholder="Enter city name..." class="input-field">
-                        <button class="btn btn-primary" id="btn-search-weather">Search</button>
-                    </div>
-                </div>
-
-                <!-- Weather Data -->
-                <div class="weather-grid" id="weather-data-container">
-                    <div class="weather-main">
-                        <div class="weather-temp-box">
-                            <span class="weather-temp" id="weather-temp">--°C</span>
-                            <span class="weather-desc" id="weather-desc">Loading...</span>
-                        </div>
-                        <div class="weather-main-icon" id="weather-icon">☁️</div>
-                    </div>
-                    
-                    <div class="weather-details">
-                        <div class="weather-detail-item">
-                            <span class="detail-icon">💧</span>
-                            <div class="detail-text">
-                                <span class="detail-label">Humidity</span>
-                                <span class="detail-value" id="weather-humidity">--%</span>
-                            </div>
-                        </div>
-                        <div class="weather-detail-item">
-                            <span class="detail-icon">💨</span>
-                            <div class="detail-text">
-                                <span class="detail-label">Wind Speed</span>
-                                <span class="detail-value" id="weather-wind">-- km/h</span>
-                            </div>
-                        </div>
-                        <div class="weather-detail-item">
-                            <span class="detail-icon">🌧️</span>
-                            <div class="detail-text">
-                                <span class="detail-label">Rain Prob.</span>
-                                <span class="detail-value" id="weather-rain">--%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mandi / Market Rates Section -->
-    <section class="mandi section" id="mandi-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Today's Mandi Rates</h2>
-                <p>Track live agricultural market prices across India.</p>
-            </div>
-            
-            <div class="mandi-card">
-                <div style="text-align: center; margin-bottom: 25px;">
-                    <span class="demo-badge" id="mandi-demo-badge">Demo mandi data — connect a live market API for current prices.</span>
-                </div>
-
-                <div class="mandi-controls">
-                    <div class="control-group">
-                        <label for="mandi-search">Search:</label>
-                        <input type="text" id="mandi-search" class="input-field" placeholder="Search crop or mandi...">
-                    </div>
-                    
-                    <div class="control-group">
-                        <label for="mandi-crop-filter">Crop:</label>
-                        <select id="mandi-crop-filter" class="input-field select-field">
-                            <option value="">All Crops</option>
-                            <!-- Options populated by JS -->
-                        </select>
-                    </div>
-
-                    <div class="control-group">
-                        <label for="mandi-state-filter">State:</label>
-                        <select id="mandi-state-filter" class="input-field select-field">
-                            <option value="">All States</option>
-                            <!-- Options populated by JS -->
-                        </select>
-                    </div>
-                    
-                    <div class="control-group">
-                        <label for="mandi-sort">Sort By:</label>
-                        <select id="mandi-sort" class="input-field select-field">
-                            <option value="default">Default</option>
-                            <option value="price-low">Price: Low to High</option>
-                            <option value="price-high">Price: High to Low</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="table-container">
-                    <table class="mandi-table" id="mandi-table">
-                        <thead>
-                            <tr>
-                                <th>Crop</th>
-                                <th>Mandi</th>
-                                <th>State</th>
-                                <th>Min Price (₹)</th>
-                                <th>Max Price (₹)</th>
-                                <th>Modal Price (₹)</th>
-                                <th>Unit</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody id="mandi-tbody">
-                            <tr><td colspan="8" style="text-align: center; padding: 20px;">Loading rates...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Government Schemes Section -->
-    <section class="schemes section" id="schemes-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Government Schemes</h2>
-                <p>Discover financial aid, subsidies, and agricultural schemes made for you.</p>
-            </div>
-            
-            <div class="schemes-controls" style="max-width: 600px; margin: 0 auto 40px;">
-                <input type="text" id="scheme-search" class="input-field" placeholder="Search government schemes..." style="width: 100%; padding: 15px; font-size: 1.1rem; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #ddd;">
-            </div>
-
-            <div class="schemes-grid" id="schemes-container">
-                <!-- Scheme cards will be dynamically populated by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Services Section -->
-    <section class="services section" id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Quick Services</h2>
-                <p>Everything you need for better farming, accessible instantly.</p>
-            </div>
-
-            <div class="services-grid">
-                <!-- Card 1 -->
-                <div class="service-card">
-                    <div class="service-icon">🌱</div>
-                    <h3>Crop Disease Detection</h3>
-                    <p>Identify diseases in your crops instantly using advanced AI technology.</p>
-                    <a href="#disease-detector" class="btn btn-outline">Analyze Now</a>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="service-card">
-                    <div class="service-icon">📷</div>
-                    <h3>Upload / Camera</h3>
-                    <p>Take a picture or upload a photo of your leaf for quick diagnosis.</p>
-                    <a href="#disease-detector" class="btn btn-outline">Open Camera</a>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="service-card">
-                    <div class="service-icon">🌦️</div>
-                    <h3>Weather</h3>
-                    <p>Get real-time local weather forecasts to plan your farming activities.</p>
-                    <a href="#weather-section" class="btn btn-outline">Check Weather</a>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>Mandi Rates</h3>
-                    <p>Stay updated with the latest live crop prices in your local Mandi.</p>
-                    <a href="#mandi-section" class="btn btn-outline">View Rates</a>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="service-card">
-                    <div class="service-icon">🏛️</div>
-                    <h3>Government Schemes</h3>
-                    <p>Discover financial aid and agricultural schemes made for you.</p>
-                    <a href="#schemes-section" class="btn btn-outline">Find Schemes</a>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="service-card">
-                    <div class="service-icon">☎️</div>
-                    <h3>Farmer Helpline</h3>
-                    <p>Directly connect with agricultural experts for advice and support.</p>
-                    <a href="#helplines-section" class="btn btn-outline">Call Now</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Farmer Helpline Section -->
-    <section class="helplines section" id="helplines-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Farmer Helplines</h2>
-                <p>Direct support from agricultural experts and government departments.</p>
-            </div>
-            
-            <div class="helpline-notice">
-                <span class="detail-icon">⚠️</span>
-                <p><strong>Please verify helpline numbers from official government sources because contact numbers may change.</strong></p>
-            </div>
-
-            <div class="helplines-grid" id="helplines-container">
-                <!-- Helpline cards will be dynamically populated by JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about section" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2>How Farmer Helps Helps Farmers</h2>
-                <p>Empowering you with data-driven insights for a better harvest.</p>
-            </div>
-
-            <div class="about-grid">
-                <div class="about-card">
-                    <div class="about-number">1</div>
-                    <h3>Identify Crop Diseases</h3>
-                    <p>Catch infections early before they spread and protect your yield.</p>
-                </div>
-                
-                <div class="about-card">
-                    <div class="about-number">2</div>
-                    <h3>Make Better Decisions</h3>
-                    <p>Plan irrigation and harvesting based on accurate weather forecasts.</p>
-                </div>
-
-                <div class="about-card">
-                    <div class="about-number">3</div>
-                    <h3>Find Important Info</h3>
-                    <p>Access the right prices and government support when you need it.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <h2><span class="logo-icon">🌱</span> Farmer Helps</h2>
-                <p>Smart Farming. Better Decisions. Healthy Crops.</p>
-            </div>
-            
-            <div class="footer-links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#">Contact</a>
-                <a href="#">Privacy</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Farmer Helps</p>
-        </div>
-    </footer>
-
-    <!-- Voice Assistant Overlay -->
-    <div class="voice-overlay" id="voice-overlay">
-        <div class="voice-panel">
-            <button class="voice-close" id="voice-close">&times;</button>
-            <div class="voice-header">
-                <h3>Voice Assistant</h3>
-                <div class="lang-selector">
-                    <button class="lang-btn active" id="lang-en" data-lang="en-IN">English</button>
-                    <span style="color:#ccc;">|</span>
-                    <button class="lang-btn" id="lang-hi" data-lang="hi-IN">हिंदी</button>
-                </div>
-            </div>
-            
-            <div class="voice-status" id="voice-status">Click microphone to speak</div>
-            <div class="voice-text-box">
-                <p id="voice-text" class="voice-text">"Ask me about weather, mandi rates, or crop diseases..."</p>
-            </div>
-            
-            <div class="voice-controls">
-                <button class="voice-action-btn" id="voice-start-btn">
-                    <span class="voice-mic-icon">🎤</span>
-                </button>
-                <div class="voice-unsupported" id="voice-unsupported" style="display:none; color: #d32f2f; margin-top: 15px; font-size: 0.9rem;">
+<!-- Latest Updates Section -->
+<section class="updates-section section home-content" id="updates">
+<div class="container">
+<div class="section-header">
+<h2 data-i18n="updates.title">Latest Updates</h2>
+<p data-i18n="updates.desc">Stay informed with the newest alerts and agricultural news.</p>
+</div>
+<div class="updates-grid">
+<div class="update-card">
+<span class="update-badge badge-warning" data-i18n="updates.badge.weather">Weather Alert</span>
+<h3 data-i18n="updates.u1.title">Heavy Rainfall Expected</h3>
+<p data-i18n="updates.u1.desc">Heavy unseasonal rains expected in central regions over the next 48 hours. Secure harvested crops.</p>
+<span class="update-time" data-i18n="updates.u1.time">2 hours ago</span>
+</div>
+<div class="update-card">
+<span class="update-badge badge-success" data-i18n="updates.badge.scheme">Government Scheme</span>
+<h3 data-i18n="updates.u2.title">PM-KISAN Installment</h3>
+<p data-i18n="updates.u2.desc">The 14th installment of PM-KISAN has been released. Check your bank accounts for DBT transfer.</p>
+<span class="update-time" data-i18n="updates.u2.time">5 hours ago</span>
+</div>
+<div class="update-card">
+<span class="update-badge badge-info" data-i18n="updates.badge.mandi">Mandi Update</span>
+<h3 data-i18n="updates.u3.title">Onion Export Policy</h3>
+<p data-i18n="updates.u3.desc">New export policies have caused a temporary 10% spike in onion prices across major mandis.</p>
+<span class="update-time" data-i18n="updates.u3.time">1 day ago</span>
+</div>
+<div class="update-card">
+<span class="update-badge badge-primary" data-i18n="updates.badge.advisory">Farming Advisory</span>
+<h3 data-i18n="updates.u4.title">Kharif Sowing Window</h3>
+<p data-i18n="updates.u4.desc">Optimal sowing window for soybean starts next week. Prepare soil and procure certified seeds.</p>
+<span class="update-time" data-i18n="updates.u4.time">2 days ago</span>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="about section home-content" id="about">
+<div class="container">
+<div class="section-header">
+<h2 data-i18n="about.title">How Farmer Helps Helps Farmers</h2>
+<p data-i18n="about.desc">Empowering you with data-driven insights for a better harvest.</p>
+</div>
+<div class="about-grid">
+<div class="about-card">
+<div class="about-number">1</div>
+<h3 data-i18n="about.a1.title">Identify Crop Diseases</h3>
+<p data-i18n="about.a1.desc">Catch infections early before they spread and protect your yield.</p>
+</div>
+<div class="about-card">
+<div class="about-number">2</div>
+<h3 data-i18n="about.a2.title">Make Better Decisions</h3>
+<p data-i18n="about.a2.desc">Plan irrigation and harvesting based on accurate weather forecasts.</p>
+</div>
+<div class="about-card">
+<div class="about-number">3</div>
+<h3 data-i18n="about.a3.title">Find Important Info</h3>
+<p data-i18n="about.a3.desc">Access the right prices and government support when you need it.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="footer">
+<div class="container footer-content">
+<div class="footer-brand">
+<h2><span class="logo-icon">🌱</span> Farmer Helps</h2>
+<p data-i18n="footer.tagline">Smart Farming. Better Decisions. Healthy Crops.</p>
+</div>
+<div class="footer-links">
+<a data-i18n="footer.home" href="#home">Home</a>
+<a data-i18n="footer.about" href="#about">About</a>
+<a data-i18n="footer.contact" href="#">Contact</a>
+<a data-i18n="footer.privacy" href="#">Privacy</a>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2026 Farmer Helps</p>
+</div>
+</footer>
+<!-- Voice Assistant Overlay -->
+<div class="voice-overlay" id="voice-overlay">
+<div class="voice-panel">
+<button class="voice-close" id="voice-close">×</button>
+<div class="voice-header">
+<h3 data-i18n="voice.title">Voice Assistant</h3>
+<div class="lang-selector">
+<button class="lang-btn active" data-lang="en-IN" id="lang-en">English</button>
+<span style="color:#ccc;">|</span>
+<button class="lang-btn" data-lang="hi-IN" id="lang-hi">हिंदी</button>
+</div>
+</div>
+<div class="voice-status" data-i18n="voice.status" id="voice-status">Click microphone to speak</div>
+<div class="voice-text-box">
+<p class="voice-text" data-i18n="voice.text" id="voice-text">"Ask me about weather, mandi rates, or crop diseases..."</p>
+</div>
+<div class="voice-controls">
+<button class="voice-action-btn" id="voice-start-btn">
+<span class="voice-mic-icon">🎤</span>
+</button>
+<div class="voice-unsupported" id="voice-unsupported" style="display:none; color: #d32f2f; margin-top: 15px; font-size: 0.9rem;">
                     Sorry, your browser does not support voice recognition. Try Google Chrome.
                 </div>
-            </div>
-            <div class="voice-hints">
-                <p>Try saying:</p>
-                <ul>
-                    <li>"आज मौसम कैसा है?"</li>
-                    <li>"गेहूं का मंडी भाव क्या है?"</li>
-                    <li>"Tell me today's weather"</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Floating Microphone Button -->
-    <button class="voice-fab" id="voice-fab" aria-label="Voice Assistant">
+</div>
+<div class="voice-hints">
+<p data-i18n="voice.hints.title">Try saying:</p>
+<ul>
+<li data-i18n="voice.h1">"आज मौसम कैसा है?"</li>
+<li data-i18n="voice.h2">"गेहूं का मंडी भाव क्या है?"</li>
+<li data-i18n="voice.h3">"Tell me today's weather"</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Floating Microphone Button -->
+<button aria-label="Voice Assistant" class="voice-fab" id="voice-fab">
         🎤
     </button>
-
-    <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+<!-- Back to Top Button -->
+<button aria-label="Back to top" class="back-to-top" id="backToTop">
         ↑
     </button>
-
-    <!-- Toast Notifications Container -->
-    <div id="toast-container" class="toast-container" aria-live="polite">    </div>
-
-    <!-- Scripts -->
-    <script src="route.js"></script>
-    <script src="script.js"></script>
-
-    <!-- Login page enhancements (password show/hide, strength meter, subtitle sync) -->
-    <script>
+<!-- Toast Notifications Container -->
+<div aria-live="polite" class="toast-container" id="toast-container"> </div>
+<!-- Scripts -->
+<script src="translations.js"></script>
+<script src="route.js"></script>
+<script src="script.js"></script>
+<!-- Login page enhancements (password show/hide, strength meter, subtitle sync) -->
+<script>
     (function () {
         // Show / hide password
         document.querySelectorAll('#login [data-toggle]').forEach(function (btn) {
@@ -664,5 +782,27 @@
         }
     })();
     </script>
+
+    <!-- Feedback Widget -->
+    <div id="feedback-widget" class="feedback-widget">
+        <button id="feedback-btn" class="feedback-btn" data-i18n="feedback.btn">Feedback</button>
+        <div id="feedback-box" class="feedback-box hidden">
+            <div class="feedback-header">
+                <h4 data-i18n="feedback.title">Leave a Review</h4>
+                <button id="feedback-close" class="feedback-close">&times;</button>
+            </div>
+            <div class="feedback-body">
+                <p data-i18n="feedback.desc">How is your experience with Farmer Helps?</p>
+                <div class="feedback-stars">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <textarea id="feedback-text" data-i18n-placeholder="feedback.placeholder" placeholder="Write your feedback here..."></textarea>
+                <button id="feedback-submit" class="btn btn-primary btn-small w-100" data-i18n="feedback.submit">Submit</button>
+            </div>
+            <div id="feedback-success" class="feedback-success hidden">
+                <p data-i18n="feedback.success">Thank you for your feedback!</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
