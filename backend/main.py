@@ -1,9 +1,9 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import time
-from location import get_location, search_location
-from weather import get_weather as fetch_weather
-from voice import router as voice_router
+from .location import get_location, search_location
+from .weather import get_weather as fetch_weather
+from .voice import router as voice_router
 
 
 app = FastAPI(title="Farmer Helps API")

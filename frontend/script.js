@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (btnAnalyze) {
-        btnAnalyze.addEventListener('click', () => {
+        btnAnalyze.addEventListener('click', async () => {
             if (!selectedImageFile) return;
             
             // Show loading state
@@ -224,18 +224,38 @@ document.addEventListener('DOMContentLoaded', () => {
             previewArea.style.display = 'none';
             loadingArea.style.display = 'block';
             
-            // Fake delay of 2.5 seconds
-            setTimeout(() => {
+            try {
+                const formData = new FormData();
+                formData.append('image', selectedImageFile);
+                
+                const response = await fetch(CONFIG.DISEASE_API_URL, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) throw new Error("API Error");
+                
+                const data = await response.json();
+                
                 loadingArea.style.display = 'none';
                 resultArea.style.display = 'block';
                 
-                // Set fake result
-                document.getElementById('res-confidence').textContent = "94%";
-                document.getElementById('res-disease').textContent = "Early Blight";
-                document.getElementById('res-crop').textContent = "Tomato";
-                document.getElementById('res-progress').style.width = "94%";
-                document.getElementById('res-action').textContent = "Remove affected leaves immediately and apply a copper-based fungicide to prevent further spread.";
-            }, 2500);
+                const confPercent = Math.round((data.confidence || 0.98) * 100) + "%";
+                document.getElementById('res-confidence').textContent = confPercent;
+                document.getElementById('res-disease').textContent = data.disease || "Unknown";
+                document.getElementById('res-crop').textContent = (data.disease && data.disease.includes('Tomato')) ? 'Tomato' : ((data.disease && data.disease.includes('Wheat')) ? 'Wheat' : 'Crop');
+                document.getElementById('res-progress').style.width = confPercent;
+                document.getElementById('res-action').textContent = data.is_demo 
+                    ? "This is a demo result based on the filename. To use the real model, ensure the AI model is uncommented in the backend."
+                    : "Please consult local agricultural experts for specific pesticide recommendations based on this AI analysis.";
+                
+            } catch (error) {
+                console.error("AI Error:", error);
+                loadingArea.style.display = 'none';
+                uploadArea.style.display = 'block';
+                showToast("Failed to analyze image. Please make sure the backend server is running.", "error");
+                btnAnalyze.innerHTML = window.translations ? window.translations[currentLang]['ai.btn.analyze'] : '🔍 Analyze Image';
+            }
         });
     }
 
@@ -247,6 +267,11 @@ document.addEventListener('DOMContentLoaded', () => {
             previewArea.style.display = 'none';
             loadingArea.style.display = 'none';
             resultArea.style.display = 'none';
+            
+            const currentLang = localStorage.getItem('farmer_helps_lang') || 'en';
+            if (btnAnalyze) {
+                btnAnalyze.innerHTML = window.translations ? window.translations[currentLang]['ai.btn.analyze'] : '🔍 Analyze Image';
+            }
         });
     }
 
