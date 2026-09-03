@@ -867,3 +867,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+function showDiseaseResult(prediction) {
+
+    const diseaseName = prediction.disease;
+    const confidence = Math.round(prediction.confidence * 100);
+
+    document.getElementById("res-disease").textContent =
+        diseaseName;
+
+    document.getElementById("res-confidence").textContent =
+        confidence;
+
+    document.getElementById("confidence-value").textContent =
+        confidence + "%";
+
+    document.getElementById("res-progress").style.width =
+        confidence + "%";
+
+
+    // Update circular confidence
+    const circle =
+        document.querySelector(".confidence-circle");
+
+    circle.style.background =
+        `conic-gradient(
+            #219653 ${confidence}%,
+            #e5eee8 0
+        )`;
+
+
+    // Show result
+    document.getElementById("result-card").style.display =
+        "grid";
+}

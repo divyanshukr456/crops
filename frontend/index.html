@@ -365,19 +365,56 @@
 </div>
 <!-- Result Area -->
 <div class="ai-result-area" id="ai-result-area" style="display: none;">
-<div class="result-header">
-<div class="result-badge"><span data-i18n="ai.result.conf">AI Confidence:</span> <span id="res-confidence">94%</span></div>
-<h2 class="result-disease" id="res-disease">Early Blight</h2>
-<p class="result-crop"><span data-i18n="ai.result.crop">Crop detected:</span> <strong id="res-crop">Tomato</strong></p>
-</div>
-<div class="result-progress-container">
-<div class="progress-bar-bg">
-<div class="progress-bar-fill" id="res-progress" style="width: 94%;"></div>
-</div>
-</div>
-<div class="result-action-box">
-<h3 data-i18n="ai.result.action.title">Recommended Action</h3>
-<p id="res-action">Remove affected leaves immediately and apply a copper-based fungicide to prevent further spread.</p>
+<div id="result-card" style="display:none;">
+
+    <h2>Detection Result</h2>
+
+    <p>
+        Crop:
+        <span id="res-crop">-</span>
+    </p>
+
+    <p>
+        Disease:
+        <span id="res-disease">-</span>
+    </p>
+
+    <p>
+        Confidence:
+        <span id="res-confidence">-</span>%
+    </p>
+
+    <p>
+        Severity:
+        <span id="res-severity">-</span>
+    </p>
+
+    <p>
+        Explanation:
+        <span id="res-explanation">-</span>
+    </p>
+
+    <p>
+        Recommended Action:
+        <span id="res-action">-</span>
+    </p>
+
+    <p>
+        Prevention:
+        <span id="res-prevention">-</span>
+    </p>
+
+    <p>
+        AI Confidence:
+        <span id="confidence-value">-</span>
+    </p>
+
+    <progress
+        id="res-progress"
+        value="0"
+        max="100">
+    </progress>
+
 </div>
 <button class="btn btn-outline w-100 mt-20" data-i18n="ai.btn.reset" id="btn-reset-detector">Scan Another Plant</button>
 </div>
@@ -722,6 +759,10 @@
 <!-- Toast Notifications Container -->
 <div aria-live="polite" class="toast-container" id="toast-container"> </div>
 <!-- Scripts -->
+<!-- TensorFlow.js -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+<!-- Your Teachable Machine code -->
+<script src="disease_detector.js"></script>
 <script src="translations.js"></script>
 <script src="route.js"></script>
 <script src="script.js"></script>
