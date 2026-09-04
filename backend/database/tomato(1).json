@@ -1,0 +1,164 @@
+{
+  "database_version": "2.0.0",
+  "last_reviewed": "2026-09-03",
+  "language": "en",
+  "disclaimer": "Educational decision support only. Similar symptoms can have non-disease causes. Confirm diagnosis with a KVK, agricultural extension officer, or plant pathologist. Use only products registered for the crop and disease locally and follow the current label.",
+  "crop": {
+    "id": "tomato",
+    "crop_name": "Tomato",
+    "scientific_name": "Solanum lycopersicum",
+    "aliases": [
+      "tamatar",
+      "टमाटर"
+    ],
+    "disease_count": 10,
+    "diseases": [
+      {
+        "id": "tomato-early-blight",
+        "disease_name": "Early blight",
+        "pathogen": "Alternaria solani",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Older leaves show target-like brown spots and yellowing",
+          "Stems and fruit develop dark sunken lesions"
+        ],
+        "prevention": [
+          "Rotate crops, stake plants, mulch, and use clean transplants",
+          "Water at soil level and maintain nutrition"
+        ],
+        "treatment": [
+          "Remove affected lower leaves and disinfect tools",
+          "Use a registered fungicide only under local advice"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "tomato-late-blight",
+        "disease_name": "Late blight",
+        "pathogen": "Phytophthora infestans",
+        "pathogen_type": "oomycete",
+        "symptoms": [
+          "Water-soaked leaf lesions rapidly become brown",
+          "White edge growth appears in humidity; fruit develops firm brown rot"
+        ],
+        "prevention": [
+          "Use healthy transplants and resistant varieties",
+          "Avoid prolonged leaf wetness and monitor forecasts"
+        ],
+        "treatment": [
+          "Isolate suspected plants and act urgently",
+          "Use a registered anti-oomycete program with expert guidance"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "tomato-septoria-leaf-spot",
+        "disease_name": "Septoria leaf spot",
+        "pathogen": "Septoria lycopersici",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Many small circular spots with grey centres and dark margins",
+          "Tiny black fruiting bodies appear; lower leaves yellow and drop"
+        ],
+        "prevention": [
+          "Rotate and remove infected residue",
+          "Stake, mulch, and avoid overhead irrigation"
+        ],
+        "treatment": [
+          "Remove infected lower leaves",
+          "Use a registered protectant fungicide if local advice supports it"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "tomato-fusarium-wilt",
+        "disease_name": "Fusarium wilt",
+        "pathogen": "Fusarium oxysporum f. sp. lycopersici",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "One side or lower leaves yellow and wilt",
+          "Stem vascular tissue shows brown discoloration"
+        ],
+        "prevention": [
+          "Use resistant varieties and clean transplants",
+          "Rotate, sanitize tools, and manage soil movement"
+        ],
+        "treatment": [
+          "No dependable cure exists",
+          "Remove infected plants and plan resistant varieties or grafting"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "tomato-verticillium-wilt",
+        "disease_name": "Verticillium wilt",
+        "pathogen": "Verticillium dahliae",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "V-shaped yellow lesions develop from leaf margins",
+          "Plants wilt and vascular tissue becomes light brown"
+        ],
+        "prevention": [
+          "Use resistant varieties and clean plants",
+          "Rotate with non-host crops and control susceptible weeds"
+        ],
+        "treatment": [
+          "No field cure exists",
+          "Remove plants and improve long-term soil and rotation management"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "tomato-bacterial-spot",
+        "disease_name": "Bacterial spot",
+        "pathogen": "Xanthomonas spp.",
+        "pathogen_type": "bacterium",
+        "symptoms": [
+          "Small dark greasy leaf spots may have yellow halos",
+          "Fruit develops raised corky scabs"
+        ],
+        "prevention": [
+          "Use tested seed and clean transplants",
+          "Avoid overhead irrigation and handling wet plants"
+        ],
+        "treatment": [
+          "Remove badly affected plants and sanitize tools",
+          "Ask extension services about locally effective registered bactericides"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR crop and agro-advisory resources",
+      "url": "https://icar.gov.in/"
+    },
+    {
+      "name": "Government of India PPQS IPM packages",
+      "url": "https://ppqs.gov.in/ipm-packages"
+    },
+    {
+      "name": "TNAU Agritech crop protection portal",
+      "url": "https://agritech.tnau.ac.in/crop_protection/crop_protection.html"
+    }
+  ]
+}

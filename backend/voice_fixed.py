@@ -23,12 +23,7 @@ router = APIRouter()
 # Accept GEMINI_API_KEY (recommended) and GOOGLE_API_KEY as a fallback.
 api_key = (os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip()
 
-if not api_key:
-    raise RuntimeError(
-        "Gemini API key is missing. Add GEMINI_API_KEY=your_key to the backend .env file."
-    )
-
-client = genai.Client(api_key=api_key)
+client = genai.Client(api_key=api_key) if api_key else None
 MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
 
@@ -46,6 +41,8 @@ class VoiceRequest(BaseModel):
 
 @router.post("/api/voice")
 def voice_assistant(req: VoiceRequest):
+    if client is None:
+        raise HTTPException(status_code=503, detail="Voice assistant is unavailable until GEMINI_API_KEY is configured.")
     user_message = req.get_message()
 
     if not user_message:

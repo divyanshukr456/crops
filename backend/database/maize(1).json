@@ -1,0 +1,165 @@
+{
+  "database_version": "2.0.0",
+  "last_reviewed": "2026-09-03",
+  "language": "en",
+  "disclaimer": "Educational decision support only. Similar symptoms can have non-disease causes. Confirm diagnosis with a KVK, agricultural extension officer, or plant pathologist. Use only products registered for the crop and disease locally and follow the current label.",
+  "crop": {
+    "id": "maize",
+    "crop_name": "Maize",
+    "scientific_name": "Zea mays",
+    "aliases": [
+      "corn",
+      "makka",
+      "मक्का"
+    ],
+    "disease_count": 10,
+    "diseases": [
+      {
+        "id": "maize-maydis-leaf-blight",
+        "disease_name": "Maydis leaf blight",
+        "pathogen": "Bipolaris maydis",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Tan elongated lesions enlarge and merge",
+          "Severe infection dries leaves and reduces grain filling"
+        ],
+        "prevention": [
+          "Plant resistant hybrids and rotate",
+          "Manage residue and use balanced fertilizer"
+        ],
+        "treatment": [
+          "Assess upper-canopy damage",
+          "Use a registered foliar fungicide only when risk justifies it"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "maize-northern-leaf-blight",
+        "disease_name": "Northern corn leaf blight",
+        "pathogen": "Exserohilum turcicum",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Long cigar-shaped grey-green lesions",
+          "Lesions merge and destroy large leaf areas"
+        ],
+        "prevention": [
+          "Use resistant hybrids and crop rotation",
+          "Manage infected residue"
+        ],
+        "treatment": [
+          "Scout before tasselling",
+          "Use a registered fungicide only for high-risk susceptible crops"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "maize-banded-leaf-sheath-blight",
+        "disease_name": "Banded leaf and sheath blight",
+        "pathogen": "Rhizoctonia solani",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Water-soaked lesions with alternating light and dark bands",
+          "Sheaths, leaves, and ears may rot with small sclerotia"
+        ],
+        "prevention": [
+          "Use tolerant hybrids and recommended spacing",
+          "Remove lower infected leaves where advised and manage residue"
+        ],
+        "treatment": [
+          "Improve airflow and avoid excess nitrogen",
+          "Seek local advice on biological or registered fungicide options"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "maize-downy-mildew",
+        "disease_name": "Downy mildew",
+        "pathogen": "Peronosclerospora spp.",
+        "pathogen_type": "oomycete",
+        "symptoms": [
+          "Pale yellow stripes run along leaves",
+          "White downy growth appears beneath leaves; plants become stunted and barren"
+        ],
+        "prevention": [
+          "Use resistant hybrids and treated seed",
+          "Remove volunteer maize and rogue infected plants early"
+        ],
+        "treatment": [
+          "No cure for systemic infection",
+          "Remove plants and follow locally approved seed-treatment guidance"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "maize-stalk-rot",
+        "disease_name": "Fusarium stalk rot",
+        "pathogen": "Fusarium verticillioides and related species",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Lower stalk tissues become soft or shredded",
+          "Plants lodge and internal pith may be pink or salmon coloured"
+        ],
+        "prevention": [
+          "Use resistant hybrids and balanced fertility",
+          "Reduce drought and insect stress and harvest promptly"
+        ],
+        "treatment": [
+          "Harvest lodged or affected fields early if safe",
+          "Dry grain rapidly and test suspect grain for mycotoxins"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "maize-charcoal-rot",
+        "disease_name": "Charcoal rot",
+        "pathogen": "Macrophomina phaseolina",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Plants dry prematurely after flowering",
+          "Lower stalks contain many tiny black specks and shredded pith"
+        ],
+        "prevention": [
+          "Reduce drought stress and maintain soil fertility",
+          "Rotate and use tolerant hybrids"
+        ],
+        "treatment": [
+          "No rescue treatment exists",
+          "Harvest promptly and improve water and residue management next season"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR crop and agro-advisory resources",
+      "url": "https://icar.gov.in/"
+    },
+    {
+      "name": "Government of India PPQS IPM packages",
+      "url": "https://ppqs.gov.in/ipm-packages"
+    },
+    {
+      "name": "TNAU Agritech crop protection portal",
+      "url": "https://agritech.tnau.ac.in/crop_protection/crop_protection.html"
+    }
+  ]
+}

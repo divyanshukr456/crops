@@ -1,0 +1,164 @@
+{
+  "database_version": "2.0.0",
+  "last_reviewed": "2026-09-03",
+  "language": "en",
+  "disclaimer": "Educational decision support only. Similar symptoms can have non-disease causes. Confirm diagnosis with a KVK, agricultural extension officer, or plant pathologist. Use only products registered for the crop and disease locally and follow the current label.",
+  "crop": {
+    "id": "potato",
+    "crop_name": "Potato",
+    "scientific_name": "Solanum tuberosum",
+    "aliases": [
+      "aloo",
+      "आलू"
+    ],
+    "disease_count": 10,
+    "diseases": [
+      {
+        "id": "potato-late-blight",
+        "disease_name": "Late blight",
+        "pathogen": "Phytophthora infestans",
+        "pathogen_type": "oomycete",
+        "symptoms": [
+          "Water-soaked spots rapidly turn brown-black",
+          "White growth appears beneath leaves; tubers develop firm brown rot"
+        ],
+        "prevention": [
+          "Use certified seed and destroy cull piles",
+          "Use resistant varieties and monitor blight forecasts"
+        ],
+        "treatment": [
+          "Act urgently and remove small infected patches safely",
+          "Use a registered anti-oomycete program under expert advice"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "potato-early-blight",
+        "disease_name": "Early blight",
+        "pathogen": "Alternaria solani",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Older leaves develop target-like brown rings",
+          "Tubers may have dark sunken leathery lesions"
+        ],
+        "prevention": [
+          "Rotate crops and use clean seed",
+          "Maintain balanced nutrition and reduce leaf wetness"
+        ],
+        "treatment": [
+          "Remove infected foliage and residue",
+          "Use a registered fungicide only after confirming disease pressure"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "potato-black-scurf",
+        "disease_name": "Black scurf and stem canker",
+        "pathogen": "Rhizoctonia solani",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Hard black bodies adhere to tuber skin",
+          "Sprouts and stems develop brown cankers, causing uneven emergence"
+        ],
+        "prevention": [
+          "Plant certified clean seed in warm well-drained soil",
+          "Rotate crops and harvest promptly after skin set"
+        ],
+        "treatment": [
+          "No treatment removes existing tuber scurf",
+          "Use locally approved seed treatment and sanitation next season"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "potato-common-scab",
+        "disease_name": "Common scab",
+        "pathogen": "Streptomyces spp.",
+        "pathogen_type": "bacterium",
+        "symptoms": [
+          "Raised, corky, or pitted lesions form on tubers",
+          "Internal flesh is usually unaffected"
+        ],
+        "prevention": [
+          "Use resistant varieties and clean seed",
+          "Avoid fresh manure and high soil pH; maintain moisture during tuber initiation"
+        ],
+        "treatment": [
+          "No curative treatment exists after lesions form",
+          "Adjust soil and rotation practices after testing soil pH"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "potato-bacterial-wilt",
+        "disease_name": "Bacterial wilt (brown rot)",
+        "pathogen": "Ralstonia solanacearum species complex",
+        "pathogen_type": "bacterium",
+        "symptoms": [
+          "Sudden wilting occurs while leaves may remain green",
+          "Cut stems may ooze bacteria; tuber vascular rings turn brown"
+        ],
+        "prevention": [
+          "Use certified seed and clean irrigation water",
+          "Sanitize tools, rotate broadly, and follow quarantine rules"
+        ],
+        "treatment": [
+          "No cure exists",
+          "Remove affected plants under local guidance and report suspected regulated outbreaks"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "potato-blackleg",
+        "disease_name": "Blackleg and soft rot",
+        "pathogen": "Pectobacterium and Dickeya spp.",
+        "pathogen_type": "bacterium",
+        "symptoms": [
+          "Stem bases become black, soft, and slimy",
+          "Tubers develop wet soft foul-smelling decay"
+        ],
+        "prevention": [
+          "Use certified seed and sanitize cutting equipment",
+          "Avoid planting or harvesting in wet soil and prevent tuber injury"
+        ],
+        "treatment": [
+          "Remove affected plants and rotting tubers",
+          "Dry harvested tubers and improve cool ventilated storage"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR crop and agro-advisory resources",
+      "url": "https://icar.gov.in/"
+    },
+    {
+      "name": "Government of India PPQS IPM packages",
+      "url": "https://ppqs.gov.in/ipm-packages"
+    },
+    {
+      "name": "TNAU Agritech crop protection portal",
+      "url": "https://agritech.tnau.ac.in/crop_protection/crop_protection.html"
+    }
+  ]
+}

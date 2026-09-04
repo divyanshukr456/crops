@@ -1,0 +1,166 @@
+{
+  "database_version": "2.0.0",
+  "last_reviewed": "2026-09-03",
+  "language": "en",
+  "disclaimer": "Educational decision support only. Similar symptoms can have non-disease causes. Confirm diagnosis with a KVK, agricultural extension officer, or plant pathologist. Use only products registered for the crop and disease locally and follow the current label.",
+  "crop": {
+    "id": "rice",
+    "crop_name": "Rice",
+    "scientific_name": "Oryza sativa",
+    "aliases": [
+      "paddy",
+      "dhan",
+      "धान",
+      "चावल"
+    ],
+    "disease_count": 10,
+    "diseases": [
+      {
+        "id": "rice-blast",
+        "disease_name": "Rice blast",
+        "pathogen": "Magnaporthe oryzae",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Spindle-shaped lesions with grey centres and brown margins",
+          "Neck infection causes white or empty panicles"
+        ],
+        "prevention": [
+          "Use resistant varieties and healthy seed",
+          "Avoid excess nitrogen and prolonged leaf wetness"
+        ],
+        "treatment": [
+          "Confirm leaf or neck blast",
+          "Use a registered blast fungicide only according to local thresholds"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "rice-bacterial-leaf-blight",
+        "disease_name": "Bacterial leaf blight",
+        "pathogen": "Xanthomonas oryzae pv. oryzae",
+        "pathogen_type": "bacterium",
+        "symptoms": [
+          "Water-soaked streaks start at leaf tips and margins",
+          "Seedlings may wilt; lesions become yellow then straw coloured"
+        ],
+        "prevention": [
+          "Use resistant varieties and clean seed",
+          "Avoid excess nitrogen, leaf injury, and contaminated irrigation"
+        ],
+        "treatment": [
+          "Drain excess water and avoid spreading bacteria",
+          "Bactericides are often unreliable; obtain local diagnostic advice"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "rice-brown-spot",
+        "disease_name": "Brown spot",
+        "pathogen": "Bipolaris oryzae",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Round to oval brown spots with grey centres on leaves",
+          "Grain may show dark discoloration and poor filling"
+        ],
+        "prevention": [
+          "Use quality treated seed",
+          "Correct potassium or other nutrient stress and manage residue"
+        ],
+        "treatment": [
+          "Improve crop nutrition and water management",
+          "Use registered seed or foliar treatment only after diagnosis"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "rice-sheath-blight",
+        "disease_name": "Sheath blight",
+        "pathogen": "Rhizoctonia solani",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Oval green-grey lesions on sheaths near the waterline",
+          "Lesions enlarge upward and may lodge plants"
+        ],
+        "prevention": [
+          "Avoid excessive nitrogen and dense planting",
+          "Manage weeds, infected residue, and water level"
+        ],
+        "treatment": [
+          "Improve canopy airflow where possible",
+          "Use a registered sheath-blight product based on local risk advice"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "rice-false-smut",
+        "disease_name": "False smut",
+        "pathogen": "Ustilaginoidea virens",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Individual grains become velvety yellow-orange balls",
+          "Balls later turn greenish-black and may contaminate seed"
+        ],
+        "prevention": [
+          "Use clean seed and balanced fertilizer",
+          "Remove infected panicles and residue; avoid excess nitrogen"
+        ],
+        "treatment": [
+          "Collect and destroy smut balls before they burst",
+          "Discuss locally timed preventive fungicide options before heading"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "rice-sheath-rot",
+        "disease_name": "Sheath rot",
+        "pathogen": "Sarocladium oryzae",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Oblong brown lesions occur on the flag-leaf sheath",
+          "Panicles emerge poorly and grains may be sterile or discoloured"
+        ],
+        "prevention": [
+          "Use healthy seed and resistant varieties",
+          "Control insects that injure sheaths and avoid excess nitrogen"
+        ],
+        "treatment": [
+          "Remove infected residue",
+          "Seek locally registered seed and foliar management advice"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR crop and agro-advisory resources",
+      "url": "https://icar.gov.in/"
+    },
+    {
+      "name": "Government of India PPQS IPM packages",
+      "url": "https://ppqs.gov.in/ipm-packages"
+    },
+    {
+      "name": "TNAU Agritech crop protection portal",
+      "url": "https://agritech.tnau.ac.in/crop_protection/crop_protection.html"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "database_version": "2.0.0",
+  "last_reviewed": "2026-09-03",
+  "language": "en",
+  "disclaimer": "Educational decision support only. Similar symptoms can have non-disease causes. Confirm diagnosis with a KVK, agricultural extension officer, or plant pathologist. Use only products registered for the crop and disease locally and follow the current label.",
+  "crop": {
+    "id": "banana",
+    "crop_name": "Banana",
+    "scientific_name": "Musa spp.",
+    "aliases": [
+      "kela",
+      "केला"
+    ],
+    "disease_count": 10,
+    "diseases": [
+      {
+        "id": "banana-fusarium-wilt",
+        "disease_name": "Fusarium wilt (Panama disease)",
+        "pathogen": "Fusarium oxysporum f. sp. cubense",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Older leaves yellow, wilt, and collapse",
+          "Pseudostem or corm vessels turn reddish-brown"
+        ],
+        "prevention": [
+          "Use certified tissue-culture plants and resistant cultivars",
+          "Prevent movement of contaminated soil, water, tools, and suckers"
+        ],
+        "treatment": [
+          "No reliable cure exists",
+          "Quarantine and report suspected TR4; follow official containment advice"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "banana-black-sigatoka",
+        "disease_name": "Black Sigatoka",
+        "pathogen": "Pseudocercospora fijiensis",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Narrow reddish-brown streaks enlarge into dark spots",
+          "Leaves blacken and die, reducing bunch filling"
+        ],
+        "prevention": [
+          "Use tolerant cultivars and clean planting material",
+          "Remove badly infected leaf tissue and improve airflow and drainage"
+        ],
+        "treatment": [
+          "Deleaf according to local practice",
+          "Use a resistance-managed registered fungicide program under expert supervision"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "banana-yellow-sigatoka",
+        "disease_name": "Yellow Sigatoka",
+        "pathogen": "Pseudocercospora musae",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Yellow-green streaks become oval grey-centred spots",
+          "Severe spotting dries leaves prematurely"
+        ],
+        "prevention": [
+          "Use clean plants and wider spacing",
+          "Improve drainage and remove infected leaf material"
+        ],
+        "treatment": [
+          "Remove heavily spotted leaves without over-defoliating",
+          "Use locally registered fungicides with mode-of-action rotation"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "banana-bunchy-top",
+        "disease_name": "Banana bunchy top",
+        "pathogen": "Banana bunchy top virus",
+        "pathogen_type": "virus",
+        "symptoms": [
+          "Dark green dot-dash streaks appear on veins and petioles",
+          "Leaves become narrow, upright, and bunched at the top"
+        ],
+        "prevention": [
+          "Use virus-free tissue-culture plants",
+          "Inspect new plants and manage banana aphid vectors"
+        ],
+        "treatment": [
+          "No cure exists",
+          "Destroy infected mats under local guidance and control vectors"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "banana-bract-mosaic",
+        "disease_name": "Banana bract mosaic",
+        "pathogen": "Banana bract mosaic virus",
+        "pathogen_type": "virus",
+        "symptoms": [
+          "Reddish or dark spindle-shaped streaks occur on bracts and pseudostems",
+          "Leaves may show mosaic and bunches may be malformed"
+        ],
+        "prevention": [
+          "Use indexed planting material",
+          "Remove volunteer hosts and manage aphid vectors"
+        ],
+        "treatment": [
+          "No cure exists",
+          "Remove infected mats and do not use their suckers"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "banana-moko",
+        "disease_name": "Moko bacterial wilt",
+        "pathogen": "Ralstonia solanacearum",
+        "pathogen_type": "bacterium",
+        "symptoms": [
+          "Young leaves wilt and yellow",
+          "Fruit pulp turns brown and vascular tissue discolours; bacterial ooze may occur"
+        ],
+        "prevention": [
+          "Use clean tools and planting material",
+          "Disinfect cutting tools and control insect transmission from male flowers where locally advised"
+        ],
+        "treatment": [
+          "No cure exists",
+          "Quarantine affected mats and report suspected outbreaks"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR crop and agro-advisory resources",
+      "url": "https://icar.gov.in/"
+    },
+    {
+      "name": "Government of India PPQS IPM packages",
+      "url": "https://ppqs.gov.in/ipm-packages"
+    },
+    {
+      "name": "TNAU Agritech crop protection portal",
+      "url": "https://agritech.tnau.ac.in/crop_protection/crop_protection.html"
+    }
+  ]
+}

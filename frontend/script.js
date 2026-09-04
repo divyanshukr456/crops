@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fadeObserver.observe(section);
     });
 
-    // --- AI Crop Disease Detector (Fake UI Flow) ---
+    // --- AI Crop Disease Detector (FastAPI + model + disease database flow) ---
     const uploadArea = document.getElementById('ai-upload-area');
     const previewArea = document.getElementById('ai-preview-area');
     const loadingArea = document.getElementById('ai-loading-area');
@@ -172,6 +172,94 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnResetDetector = document.getElementById('btn-reset-detector');
 
     let selectedImageFile = null;
+    const CONFIDENCE_THRESHOLD = 0.70;
+    let teachableModelPromise = null;
+
+    function getTeachableModel() {
+        if (!teachableModelPromise) {
+            teachableModelPromise = tmImage.load('./model/model.json', './model/metadata.json');
+        }
+        return teachableModelPromise;
+    }
+
+    // The model labels are the source of truth. Crop groups are inferred from
+    // Healthy(Crop) labels, so adding/retraining classes does not require a
+    // disease-specific if/else list in the frontend.
+    function parseModelLabel(label, classIndex, labels) {
+        const starts = labels.map((value, index) => {
+            const match = value.trim().match(/^healthy\((.+)\)$/i);
+            return match ? { index, crop: match[1].trim() } : null;
+        }).filter(Boolean);
+        const group = [...starts].reverse().find(item => item.index <= classIndex);
+        let disease = label.trim().replace(/[0-9]+\s*$/, '').trim();
+        const prefixed = disease.split(/___|::|\|/);
+        if (prefixed.length > 1) {
+            return { crop: prefixed[0].trim(), disease: prefixed.slice(1).join(' ').trim() };
+        }
+        if (/^healthy\(/i.test(disease) || (group && disease.toLowerCase() === group.crop.toLowerCase())) {
+            disease = 'Healthy';
+        }
+        return { crop: group?.crop || null, disease };
+    }
+
+    function clearDetectionResult() {
+        resultArea.style.display = 'none';
+        document.getElementById('result-card').style.display = 'none';
+        document.getElementById('ai-validation-message').style.display = 'none';
+        ['res-crop', 'res-disease', 'res-confidence', 'confidence-value', 'res-severity', 'res-explanation', 'res-action', 'res-prevention'].forEach(id => {
+            const node = document.getElementById(id);
+            if (node) node.textContent = '—';
+        });
+        document.querySelectorAll('#result-card p').forEach(node => { node.style.display = ''; });
+        document.getElementById('res-progress').value = 0;
+        document.getElementById('res-progress').style.width = '0%';
+    }
+
+    function showValidationError(message = '⚠️ Please enter crop image only.') {
+        clearDetectionResult();
+        resultArea.style.display = 'block';
+        document.getElementById('ai-validation-message').textContent = message;
+        document.getElementById('ai-validation-message').style.display = 'block';
+    }
+
+    // This is a conservative content check, not a second ML classifier. It
+    // rejects blank/flat images and images with no plausible plant/soil/foliage
+    // colors before the database is contacted. The supplied model has no
+    // explicit background class, so arbitrary objects cannot be guaranteed to
+    // be rejected by classification confidence alone.
+    async function passesImageGate(image) {
+        if (!image.naturalWidth || !image.naturalHeight) return false;
+        const canvas = document.createElement('canvas');
+        canvas.width = canvas.height = 64;
+        const context = canvas.getContext('2d', { willReadFrequently: true });
+        context.drawImage(image, 0, 0, 64, 64);
+        const pixels = context.getImageData(0, 0, 64, 64).data;
+        let varied = 0;
+        let plantLike = 0;
+        let greenLeaf = 0;
+        let yellowLeaf = 0;
+        for (let i = 0; i < pixels.length; i += 4) {
+            const r = pixels[i], g = pixels[i + 1], b = pixels[i + 2];
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            if (max - min > 18) varied++;
+            const green = g > r * 1.08 && g > b * 1.05 && g > 45;
+            const yellow = r > 80 && g > 70 && b < 90 && Math.abs(r - g) < 70;
+            const soil = r > b * 1.25 && g > b * 1.05 && r > 45 && g > 25;
+            const leafOrFruit = green || yellow || soil || (r > 90 && g > 35 && b < 80);
+            if (green) greenLeaf++;
+            if (yellow) yellowLeaf++;
+            if (leafOrFruit) plantLike++;
+        }
+        const variedRatio = varied / 4096;
+        const plantRatio = plantLike / 4096;
+        const greenRatio = greenLeaf / 4096;
+        const yellowRatio = yellowLeaf / 4096;
+        // A crop photo should contain actual foliage evidence, not only a
+        // similarly colored object/background. This deliberately errs on the
+        // side of asking for another image rather than showing a false result.
+        const hasFoliageEvidence = greenRatio >= 0.10 || (greenRatio >= 0.045 && yellowRatio >= 0.08);
+        return variedRatio >= 0.12 && plantRatio >= 0.16 && hasFoliageEvidence;
+    }
 
     if (btnChooseImage) {
         btnChooseImage.addEventListener('click', () => {
@@ -223,37 +311,60 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show loading animation
             previewArea.style.display = 'none';
             loadingArea.style.display = 'block';
+            clearDetectionResult();
             
             try {
-                const formData = new FormData();
-                formData.append('image', selectedImageFile);
-                
+                const model = await getTeachableModel();
+                if (!(await passesImageGate(imagePreview))) {
+                    throw new Error('Please enter crop image only. Upload a clear image of a supported crop or plant.');
+                }
+                const predictions = await model.predict(imagePreview, false);
+                const best = predictions.reduce((winner, current) => current.probability > winner.probability ? current : winner);
+                if (best.probability < CONFIDENCE_THRESHOLD) {
+                    throw new Error('Please enter crop image only. Upload a clearer image of a supported crop or plant.');
+                }
+                const classIndex = predictions.indexOf(best);
+                const parsed = parseModelLabel(best.className, classIndex, model.getClassLabels());
                 const response = await fetch(CONFIG.DISEASE_API_URL, {
                     method: 'POST',
-                    body: formData
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ label: best.className, crop: parsed.crop, disease: parsed.disease, confidence: best.probability })
                 });
-                
-                if (!response.ok) throw new Error("API Error");
-                
-                const data = await response.json();
-                
+                const payload = await response.json();
+                if (!response.ok || !payload.success) {
+                    throw new Error(payload.detail?.message || payload.message || 'Unable to analyze this image.');
+                }
+
+                const confidence = Math.round(payload.confidence * 100);
                 loadingArea.style.display = 'none';
                 resultArea.style.display = 'block';
-                
-                const confPercent = Math.round((data.confidence || 0.98) * 100) + "%";
-                document.getElementById('res-confidence').textContent = confPercent;
-                document.getElementById('res-disease').textContent = data.disease || "Unknown";
-                document.getElementById('res-crop').textContent = (data.disease && data.disease.includes('Tomato')) ? 'Tomato' : ((data.disease && data.disease.includes('Wheat')) ? 'Wheat' : 'Crop');
-                document.getElementById('res-progress').style.width = confPercent;
-                document.getElementById('res-action').textContent = data.is_demo 
-                    ? "This is a demo result based on the filename. To use the real model, ensure the AI model is uncommented in the backend."
-                    : "Please consult local agricultural experts for specific pesticide recommendations based on this AI analysis.";
-                
+                document.getElementById('ai-validation-message').style.display = payload.database_match ? 'none' : 'block';
+                if (!payload.database_match) {
+                    document.getElementById('ai-validation-message').textContent = 'Information not available for this crop/disease yet.';
+                }
+                document.getElementById('result-card').style.display = 'grid';
+                document.getElementById('res-confidence').textContent = confidence;
+                document.getElementById('confidence-value').textContent = confidence + '%';
+                document.getElementById('res-disease').textContent = payload.database_match ? payload.disease : 'Information Not Available';
+                document.getElementById('res-crop').textContent = payload.crop || '—';
+                const setResultField = (id, value, fallback = '—') => {
+                    const node = document.getElementById(id);
+                    node.textContent = Array.isArray(value) ? value.join(' • ') : (value || fallback);
+                    node.closest('p').style.display = value ? '' : 'none';
+                };
+                setResultField('res-severity', payload.severity);
+                setResultField('res-explanation', payload.description || payload.symptoms, payload.database_match ? 'No description supplied.' : payload.message);
+                setResultField('res-action', payload.recommended_action || payload.treatment);
+                setResultField('res-prevention', payload.prevention);
+                const progress = document.getElementById('res-progress');
+                progress.value = confidence;
+                progress.style.width = confidence + '%';
+
             } catch (error) {
-                console.error("AI Error:", error);
+                console.error("Crop disease prediction error:", error);
                 loadingArea.style.display = 'none';
-                uploadArea.style.display = 'block';
-                showToast("Failed to analyze image. Please make sure the backend server is running.", "error");
+                showValidationError(error.message || '⚠️ Please enter crop image only.');
+                showToast(error.message || 'Unable to analyze this image.', 'error');
                 btnAnalyze.innerHTML = window.translations ? window.translations[currentLang]['ai.btn.analyze'] : '🔍 Analyze Image';
             }
         });

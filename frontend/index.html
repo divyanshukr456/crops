@@ -365,6 +365,7 @@
 </div>
 <!-- Result Area -->
 <div class="ai-result-area" id="ai-result-area" style="display: none;">
+<div id="ai-validation-message" role="alert" style="display:none;">⚠️ Please enter crop image only.<br><small>Upload a clear image of a supported crop or plant.</small></div>
 <div id="result-card" style="display:none;">
 
     <h2>Detection Result</h2>
@@ -610,6 +611,12 @@
 <a class="btn btn-outline btn-small" data-i18n="schemes.btn.learn" href="https://soilhealth.dac.gov.in/home">Learn More</a>
 </div>
 <div class="scheme-card">
+<div class="scheme-icon">💧</div>
+<h3 data-i18n="schemes.pmksy.title">Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)</h3>
+<p data-i18n="schemes.pmksy.desc">Focuses on expanding irrigation access and improving water use efficiency at the farm level ("Per Drop More Crop").</p>
+<a class="btn btn-outline btn-small" data-i18n="schemes.btn.learn" href="https://pmksy.gov.in/">Learn More</a>
+</div>
+<div class="scheme-card">
 <div class="scheme-icon">📜</div>
 <h3 data-i18n="schemes.s5.title">Other Agricultural Schemes</h3>
 <p data-i18n="schemes.s5.desc">Explore subsidies for irrigation, machinery, and organic farming.</p>
@@ -759,10 +766,8 @@
 <!-- Toast Notifications Container -->
 <div aria-live="polite" class="toast-container" id="toast-container"> </div>
 <!-- Scripts -->
-<!-- TensorFlow.js -->
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
-<!-- Your Teachable Machine code -->
-<script src="disease_detector.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 <script src="translations.js"></script>
 <script src="route.js"></script>
 <script src="script.js"></script>

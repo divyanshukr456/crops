@@ -1,0 +1,164 @@
+{
+  "database_version": "2.0.0",
+  "last_reviewed": "2026-09-03",
+  "language": "en",
+  "disclaimer": "Educational decision support only. Similar symptoms can have non-disease causes. Confirm diagnosis with a KVK, agricultural extension officer, or plant pathologist. Use only products registered for the crop and disease locally and follow the current label.",
+  "crop": {
+    "id": "sugarcane",
+    "crop_name": "Sugarcane",
+    "scientific_name": "Saccharum officinarum",
+    "aliases": [
+      "ganna",
+      "गन्ना"
+    ],
+    "disease_count": 10,
+    "diseases": [
+      {
+        "id": "sugarcane-red-rot",
+        "disease_name": "Red rot",
+        "pathogen": "Colletotrichum falcatum",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Top leaves dry and stalk interiors turn red with white cross-bands",
+          "Stalks shrink and may smell sour"
+        ],
+        "prevention": [
+          "Use resistant varieties and certified seed cane",
+          "Inspect setts, sanitize tools, and rotate affected fields"
+        ],
+        "treatment": [
+          "No cure for systemically infected stalks",
+          "Remove clumps and never use affected cane as seed"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "sugarcane-smut",
+        "disease_name": "Sugarcane smut",
+        "pathogen": "Sporisorium scitamineum",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "A long black whip emerges from the growing point",
+          "Stalks become thin with excessive tillering"
+        ],
+        "prevention": [
+          "Use resistant varieties and clean treated setts",
+          "Rogue infected stools before whips release spores"
+        ],
+        "treatment": [
+          "Remove the entire stool inside a bag where practical",
+          "Disinfect tools and avoid ratooning affected fields"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "sugarcane-wilt",
+        "disease_name": "Sugarcane wilt",
+        "pathogen": "Fusarium sacchari species complex",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Canes lose vigour and leaves yellow and dry",
+          "Internal tissue becomes purple-brown and pith may become hollow"
+        ],
+        "prevention": [
+          "Use healthy seed cane and resistant varieties",
+          "Rotate and avoid prolonged drought or waterlogging"
+        ],
+        "treatment": [
+          "No dependable cure exists",
+          "Remove affected clumps and improve soil and water management"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "sugarcane-grassy-shoot",
+        "disease_name": "Grassy shoot disease",
+        "pathogen": "Phytoplasma",
+        "pathogen_type": "other",
+        "symptoms": [
+          "Many thin pale tillers form a grass-like clump",
+          "Normal canes and internodes fail to develop"
+        ],
+        "prevention": [
+          "Use certified disease-free setts",
+          "Hot-water treat setts where officially recommended and control vectors"
+        ],
+        "treatment": [
+          "No cure exists",
+          "Uproot affected stools and do not ratoon or use them as seed"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "sugarcane-mosaic",
+        "disease_name": "Sugarcane mosaic",
+        "pathogen": "Sugarcane mosaic virus and related viruses",
+        "pathogen_type": "virus",
+        "symptoms": [
+          "Leaves show irregular light and dark green mosaic",
+          "Plants may be stunted with reduced cane weight"
+        ],
+        "prevention": [
+          "Use resistant varieties and clean seed cane",
+          "Remove volunteer hosts and manage aphid vectors"
+        ],
+        "treatment": [
+          "No cure exists",
+          "Rogue affected stools and replace infected seed sources"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "sugarcane-ratoon-stunting",
+        "disease_name": "Ratoon stunting disease",
+        "pathogen": "Leifsonia xyli subsp. xyli",
+        "pathogen_type": "bacterium",
+        "symptoms": [
+          "Ratoons show poor growth and shortened internodes without clear external signs",
+          "Small orange-red dots may occur in vascular bundles at nodes"
+        ],
+        "prevention": [
+          "Use certified clean seed cane",
+          "Disinfect cutting tools and use approved hot-water treatment"
+        ],
+        "treatment": [
+          "No cure exists",
+          "Replace infected seed stocks and avoid ratooning affected fields"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR crop and agro-advisory resources",
+      "url": "https://icar.gov.in/"
+    },
+    {
+      "name": "Government of India PPQS IPM packages",
+      "url": "https://ppqs.gov.in/ipm-packages"
+    },
+    {
+      "name": "TNAU Agritech crop protection portal",
+      "url": "https://agritech.tnau.ac.in/crop_protection/crop_protection.html"
+    }
+  ]
+}

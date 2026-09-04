@@ -1,0 +1,165 @@
+{
+  "database_version": "2.0.0",
+  "last_reviewed": "2026-09-03",
+  "language": "en",
+  "disclaimer": "Educational decision support only. Similar symptoms can have non-disease causes. Confirm diagnosis with a KVK, agricultural extension officer, or plant pathologist. Use only products registered for the crop and disease locally and follow the current label.",
+  "crop": {
+    "id": "onion",
+    "crop_name": "Onion",
+    "scientific_name": "Allium cepa",
+    "aliases": [
+      "pyaz",
+      "pyaaz",
+      "प्याज"
+    ],
+    "disease_count": 10,
+    "diseases": [
+      {
+        "id": "onion-purple-blotch",
+        "disease_name": "Purple blotch",
+        "pathogen": "Alternaria porri",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Oval purple-brown concentric lesions with yellow margins",
+          "Leaves and seed stalks bend and dry"
+        ],
+        "prevention": [
+          "Use healthy seed, rotate, and remove residue",
+          "Improve spacing and avoid late overhead irrigation"
+        ],
+        "treatment": [
+          "Remove badly affected leaves",
+          "Use a registered fungicide with local guidance"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "onion-downy-mildew",
+        "disease_name": "Downy mildew",
+        "pathogen": "Peronospora destructor",
+        "pathogen_type": "oomycete",
+        "symptoms": [
+          "Pale elongated leaf patches develop grey-violet fuzzy growth",
+          "Leaves bend, yellow, and die"
+        ],
+        "prevention": [
+          "Use clean sets and rotate",
+          "Improve airflow and minimize long leaf-wetness periods"
+        ],
+        "treatment": [
+          "Remove infected plants and improve drying",
+          "Use a registered anti-oomycete product based on local forecasting"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "onion-stemphylium-blight",
+        "disease_name": "Stemphylium leaf blight",
+        "pathogen": "Stemphylium vesicarium",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Small yellow to brown lesions enlarge along one side of leaves",
+          "Lesions turn dark and leaves collapse"
+        ],
+        "prevention": [
+          "Control thrips injury and remove residue",
+          "Use balanced nutrition and reduce leaf wetness"
+        ],
+        "treatment": [
+          "Remove severely affected foliage",
+          "Use a registered fungicide only after confirmation"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "onion-fusarium-basal-rot",
+        "disease_name": "Fusarium basal rot",
+        "pathogen": "Fusarium oxysporum f. sp. cepae",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Leaves yellow and die from tips",
+          "Roots rot and basal plate becomes brown; bulbs may rot in storage"
+        ],
+        "prevention": [
+          "Use resistant varieties and clean sets",
+          "Rotate, avoid wounds, and store bulbs cool and dry"
+        ],
+        "treatment": [
+          "Remove infected bulbs",
+          "No dependable cure; improve rotation, sanitation, and storage"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "onion-white-rot",
+        "disease_name": "White rot",
+        "pathogen": "Sclerotium cepivorum",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Plants yellow and collapse in patches",
+          "White fluffy growth and tiny black sclerotia form at bulb bases"
+        ],
+        "prevention": [
+          "Use clean planting material and equipment",
+          "Do not move contaminated soil; use long rotations and local sanitation measures"
+        ],
+        "treatment": [
+          "Remove affected plants with surrounding soil carefully",
+          "Seek specialist soil-treatment and quarantine advice"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "onion-bacterial-soft-rot",
+        "disease_name": "Bacterial soft rot",
+        "pathogen": "Pectobacterium spp.",
+        "pathogen_type": "bacterium",
+        "symptoms": [
+          "Neck or inner scales become water-soaked and soft",
+          "Bulbs collapse and may smell foul"
+        ],
+        "prevention": [
+          "Avoid wounds and harvest in dry weather",
+          "Cure bulbs fully and keep stores cool, dry, and ventilated"
+        ],
+        "treatment": [
+          "Discard rotting bulbs and sanitize storage areas",
+          "Correct temperature, humidity, and ventilation"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR crop and agro-advisory resources",
+      "url": "https://icar.gov.in/"
+    },
+    {
+      "name": "Government of India PPQS IPM packages",
+      "url": "https://ppqs.gov.in/ipm-packages"
+    },
+    {
+      "name": "TNAU Agritech crop protection portal",
+      "url": "https://agritech.tnau.ac.in/crop_protection/crop_protection.html"
+    }
+  ]
+}

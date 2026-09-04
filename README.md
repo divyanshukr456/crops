@@ -1,197 +1,51 @@
-# crops
-# 🌾 Farmer Helps
+# Crop Disease Detection
 
-> A smart digital platform designed to help farmers access essential agricultural information, services, and AI-powered assistance from one place.
+This project keeps browser ML, the website, and FastAPI separate. The browser evaluates the supplied Teachable Machine model, sends its label and confidence to FastAPI, and FastAPI matches that prediction against the JSON disease database.
 
-## 📌 Overview
-
-**Farmer Helps** is a web-based agricultural assistance platform that brings multiple useful farming services together in a simple and farmer-friendly interface.
-
-The platform helps farmers with:
-
-- 🌤️ Weather information based on their location
-- 📍 Automatic location detection
-- 🦠 Crop disease detection
-- 💰 Mandi/market price information
-- 🏛️ Government schemes and benefits
-- 📞 Farmer helpline information
-- 🎤 AI-powered voice assistance
-- 🌐 Hindi and English language support
-
-Our goal is to reduce the difficulty of finding reliable agricultural information by providing important farming resources through a single platform.
-
----
-
-## 🎯 Problem Statement
-
-Farmers often need to use multiple sources to find information about weather, crop diseases, market prices, government schemes, and agricultural support services.
-
-This can be time-consuming and difficult, especially when information is scattered across different platforms.
-
-**Farmer Helps** aims to solve this problem by providing these services through one centralized and easy-to-use web application.
-
----
-
-## 💡 Our Solution
-
-Farmer Helps provides a unified platform where farmers can:
-
-1. Detect their current location.
-2. Get weather information for their location.
-3. Check mandi/market rates.
-4. Detect possible crop diseases.
-5. Explore relevant government schemes.
-6. Access farmer helpline information.
-7. Interact with an AI voice assistant.
-8. Use the platform in both English and Hindi.
-
----
-
-## ✨ Key Features
-
-### 📍 Smart Location Detection
-
-The application can detect the user's geographical location and convert the coordinates into readable location information.
-
-The detected location is also used to provide location-based weather information.
-
-### 🌤️ Weather Information
-
-Farmers can view weather information associated with their detected location.
-
-The weather section can provide information such as:
-
-- Temperature
-- Weather condition
-- Humidity
-- Wind information
-- Rain probability
-- Forecast information
-
-### 🦠 Crop Disease Detection
-
-The platform provides a crop disease detection interface where users can submit crop images for analysis.
-
-The image is sent to the backend, where the disease detection service/ML model processes the image and returns the prediction.
-
-### 💰 Mandi Rates
-
-Farmers can access market/mandi price information through the backend API.
-
-This can help farmers make better decisions about where and when to sell their agricultural produce.
-
-### 🏛️ Government Schemes
-
-The platform provides information about agricultural government schemes and farmer welfare programs.
-
-### 📞 Farmer Helpline
-
-Farmers can easily access important agricultural support and helpline information.
-
-### 🎤 AI Voice Assistant
-
-Farmer Helps includes a voice-based assistant that allows users to ask questions using their voice.
-
-The system follows this flow:
+## Project layout
 
 ```text
-Voice Input
-     ↓
-Speech Recognition
-     ↓
-FastAPI Backend
-     ↓
-Gemini AI
-     ↓
-AI Response
-     ↓
-Voice Output
+crop_disease_detection/
+├── frontend/                 # HTML, CSS, browser JavaScript, model/
+└── backend/
+    ├── main.py               # FastAPI routes, including POST /predict
+    ├── database_service.py   # JSON database loading and matching
+    └── database/             # Supplied crop disease JSON files
+```
 
+## Requirements
 
-                 ┌──────────────────────┐
-                 │       Farmer         │
-                 └──────────┬───────────┘
-                            │
-                            ▼
-                 ┌──────────────────────┐
-                 │      Frontend        │
-                 │    HTML / CSS / JS   │
-                 └──────────┬───────────┘
-                            │
-                     HTTP / REST API
-                            │
-                            ▼
-                 ┌──────────────────────┐
-                 │      FastAPI         │
-                 │      Backend         │
-                 └──────────┬───────────┘
-                            │
-              ┌─────────────┼─────────────┐
-              │             │             │
-              ▼             ▼             ▼
-          Weather        Mandi       ML / AI
-            API           API        Services
-              │             │             │
-              └─────────────┼─────────────┘
-                            │
-                            ▼
-                    JSON Response
-                            │
-                            ▼
-                 ┌──────────────────────┐
-                 │    Dynamic UI        │
-                 │  Updated by JS       │
-                 └──────────────────────┘
+Python 3.10+ is sufficient for the API. The browser loads the TensorFlow.js model directly from `frontend/model/`; no TensorFlow or model conversion is required on the backend.
 
+## Start the backend
 
-User Action
-     ↓
-JavaScript
-     ↓
-fetch()
-     ↓
-FastAPI API Endpoint
-     ↓
-Backend Processing
-     ↓
-External API / ML Model / AI
-     ↓
-JSON Response
-     ↓
-JavaScript
-     ↓
-Webpage Update
-🌱 Future Improvements
+Open a terminal in `crop_disease_detection/backend` and run:
 
-Some planned improvements include:
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+uvicorn main:app --reload --host 127.0.0.1 --port 8000
+```
 
-🤖 More advanced AI farming recommendations
-🌾 Personalized crop recommendations
-📊 Historical mandi price analysis
-🌦️ More detailed weather forecasting
-🔔 Weather and farming alerts
-📱 Progressive Web App support
-🗣️ Improved regional language support
-🧠 More advanced crop disease classification
-📈 Personalized farmer dashboards
-🎯 Impact
+## Start the frontend
 
-Farmer Helps is designed to make agricultural information:
+In a second terminal, run from `frontend`:
 
-Accessible
-Simple
-Location-aware
-Multilingual
-AI-assisted
-Available from one platform
+```powershell
+python -m http.server 8080
+```
 
-The project aims to reduce the information gap between farmers and essential agricultural services.
+Then open `http://127.0.0.1:8080`. Do not open `index.html` with `file://`.
 
-👨‍💻 Project
+## API
 
-Farmer Helps
-A smart agricultural assistance platform combining web technologies, APIs, AI, and machine learning.
+`POST http://127.0.0.1:8000/predict` accepts JSON containing `label`, `crop`, `disease`, and `confidence`. It returns the matching database fields dynamically; fields absent from the JSON are omitted.
 
-⭐ Support
+Successful responses include the actual model confidence plus crop, disease, and only the information fields present in the JSON database. Low-confidence predictions and missing database matches return a safe response instead of invented advice.
 
-If you find this project useful, consider giving the repository a ⭐ on GitHub
+## Validation limitation
+
+The included model has 45 crop/disease classes and no dedicated non-crop/background class. The frontend therefore performs a conservative image-quality and plant-like-color gate, then applies the configurable confidence threshold before contacting FastAPI. This rejects many blank, unclear, and obviously unrelated images, but no classifier-only approach can guarantee rejection of every car, person, animal, or object. For reliable non-crop detection, retrain the existing model with a background/non-crop class; the supplied model itself is not replaced.
+
+The threshold is configured once with `CROP_CONFIDENCE_THRESHOLD` (default `0.70`) and is enforced by FastAPI as well as the browser.

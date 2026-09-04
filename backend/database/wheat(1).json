@@ -1,0 +1,164 @@
+{
+  "database_version": "2.0.0",
+  "last_reviewed": "2026-09-03",
+  "language": "en",
+  "disclaimer": "Educational decision support only. Similar symptoms can have non-disease causes. Confirm diagnosis with a KVK, agricultural extension officer, or plant pathologist. Use only products registered for the crop and disease locally and follow the current label.",
+  "crop": {
+    "id": "wheat",
+    "crop_name": "Wheat",
+    "scientific_name": "Triticum aestivum",
+    "aliases": [
+      "gehun",
+      "गेहूं"
+    ],
+    "disease_count": 10,
+    "diseases": [
+      {
+        "id": "wheat-yellow-rust",
+        "disease_name": "Yellow rust (stripe rust)",
+        "pathogen": "Puccinia striiformis f. sp. tritici",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Yellow-orange powdery pustules in narrow stripes along leaf veins",
+          "Severe infection dries leaves and shrivels grain"
+        ],
+        "prevention": [
+          "Grow locally recommended resistant varieties",
+          "Avoid excess nitrogen and monitor during cool humid weather"
+        ],
+        "treatment": [
+          "Confirm rust promptly",
+          "Use a locally registered rust fungicide only when advised; rotate mode-of-action groups"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "wheat-leaf-rust",
+        "disease_name": "Leaf rust (brown rust)",
+        "pathogen": "Puccinia triticina",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Scattered round orange-brown pustules mainly on upper leaf surfaces",
+          "Leaves yellow and dry when infection is severe"
+        ],
+        "prevention": [
+          "Use resistant varieties and remove volunteer wheat",
+          "Sow at the locally recommended time"
+        ],
+        "treatment": [
+          "Assess upper-leaf infection before grain filling",
+          "Apply a registered rust fungicide only under local advisory"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "wheat-stem-rust",
+        "disease_name": "Stem rust (black rust)",
+        "pathogen": "Puccinia graminis f. sp. tritici",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Elongated reddish-brown pustules on stems, sheaths, and leaves",
+          "Late pustules become black; stems may weaken and lodge"
+        ],
+        "prevention": [
+          "Use resistant varieties and certified seed",
+          "Destroy volunteer cereals and report unusual outbreaks"
+        ],
+        "treatment": [
+          "Obtain urgent expert confirmation",
+          "Use only locally registered fungicides according to surveillance advice"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "wheat-loose-smut",
+        "disease_name": "Loose smut",
+        "pathogen": "Ustilago tritici",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "The entire ear is replaced by a loose black powder",
+          "Spores blow away leaving a bare central rachis"
+        ],
+        "prevention": [
+          "Plant certified smut-free seed",
+          "Use resistant varieties and approved seed treatment"
+        ],
+        "treatment": [
+          "Remove smutted heads before spores disperse where practical",
+          "Do not save grain from affected lots as seed"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "wheat-flag-smut",
+        "disease_name": "Flag smut",
+        "pathogen": "Urocystis agropyri",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Long grey-black stripes under the leaf epidermis",
+          "Leaves twist, split, and plants remain stunted"
+        ],
+        "prevention": [
+          "Use clean treated seed and resistant varieties",
+          "Rotate with non-host crops and control volunteer wheat"
+        ],
+        "treatment": [
+          "Rogue affected plants before spore release",
+          "Seek advice on a registered systemic seed treatment for the next sowing"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      },
+      {
+        "id": "wheat-karnal-bunt",
+        "disease_name": "Karnal bunt",
+        "pathogen": "Tilletia indica",
+        "pathogen_type": "fungus",
+        "symptoms": [
+          "Only part of a grain becomes black and powdery",
+          "Crushed grain may have a fishy odour"
+        ],
+        "prevention": [
+          "Use certified seed and tolerant varieties",
+          "Avoid moving contaminated seed and follow quarantine rules"
+        ],
+        "treatment": [
+          "No field cure exists for infected grain",
+          "Report suspected cases and do not retain affected grain for seed"
+        ],
+        "escalate_when": [
+          "Symptoms spread rapidly or affect stems, roots, panicles, ears, bunches, bolls, or fruit",
+          "Diagnosis is uncertain, several plants are affected, or initial management fails"
+        ]
+      }
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR crop and agro-advisory resources",
+      "url": "https://icar.gov.in/"
+    },
+    {
+      "name": "Government of India PPQS IPM packages",
+      "url": "https://ppqs.gov.in/ipm-packages"
+    },
+    {
+      "name": "TNAU Agritech crop protection portal",
+      "url": "https://agritech.tnau.ac.in/crop_protection/crop_protection.html"
+    }
+  ]
+}

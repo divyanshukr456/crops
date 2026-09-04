@@ -1,21 +1,38 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
+"""FastAPI entry point for the crop disease detection system."""
+from contextlib import asynccontextmanager
+import os
+
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import time
-from .location import get_location, search_location
-from .weather import get_weather as fetch_weather
-from .voice import router as voice_router
+from pydantic import BaseModel, Field
+
+try:  # Supports both `uvicorn backend.main:app` and running inside backend/.
+    from .database_service import disease_database
+    from .location import get_location, search_location
+    from .weather import get_weather as fetch_weather
+    from .voice_fixed import router as voice_router
+except ImportError:
+    from database_service import disease_database
+    from location import get_location, search_location
+    from weather import get_weather as fetch_weather
+    from voice_fixed import router as voice_router
 
 
-app = FastAPI(title="Farmer Helps API")
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    disease_database.load()
+    yield
+
+
+app = FastAPI(title="Farmer Helps API", lifespan=lifespan)
 app.include_router(voice_router)
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+CONFIDENCE_THRESHOLD = float(os.getenv("CROP_CONFIDENCE_THRESHOLD", "0.70"))
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+
+def api_error(error_type: str, message: str, status_code: int) -> HTTPException:
+    return HTTPException(status_code=status_code, detail={"success": False, "error_type": error_type, "message": message})
+
 
 @app.get("/")
 def read_root():
@@ -24,114 +41,59 @@ def read_root():
 
 @app.get("/location")
 def location(lat: float, lon: float):
-    """Detect the location and fetch weather for the SAME GPS coordinates."""
     try:
-        location_data = get_location(lat, lon)
-        weather_data = fetch_weather(lat, lon)
-        return {
-            "location": location_data,
-            "weather": weather_data,
-        }
+        return {"location": get_location(lat, lon), "weather": fetch_weather(lat, lon)}
     except Exception as exc:
-        raise HTTPException(status_code=502, detail=str(exc))
+        raise HTTPException(status_code=502, detail="Location or weather service is unavailable") from exc
 
 
 @app.get("/weather")
-def weather(lat: float = None, lon: float = None, city: str = None):
-    """Get weather by GPS coordinates or by a city name."""
+def weather(lat: float | None = None, lon: float | None = None, city: str | None = None):
     try:
         if city and (lat is None or lon is None):
             location_data = search_location(city)
-            lat = location_data["latitude"]
-            lon = location_data["longitude"]
+            lat, lon = location_data["latitude"], location_data["longitude"]
         elif lat is None or lon is None:
             raise HTTPException(status_code=400, detail="Provide lat/lon or city")
         else:
             location_data = get_location(lat, lon)
-
-        weather_data = fetch_weather(lat, lon)
-        return {
-            "location": location_data,
-            "weather": weather_data,
-        }
+        return {"location": location_data, "weather": fetch_weather(lat, lon)}
     except HTTPException:
         raise
     except Exception as exc:
-        raise HTTPException(status_code=502, detail=str(exc))
+        raise HTTPException(status_code=502, detail="Weather service is unavailable") from exc
 
 
 @app.get("/api/weather")
-def api_weather(lat: float = None, lon: float = None, city: str = None):
-    # Backward-compatible alias for the existing frontend.
+def api_weather(lat: float | None = None, lon: float | None = None, city: str | None = None):
     return weather(lat, lon, city)
 
 
-@app.post("/predict")
-async def predict_disease(image: UploadFile = File(...)):
-    """
-    Accepts an image and returns a prediction using the Teachable Machine model.
-    Currently runs in DEMO mode unless the model code is uncommented.
-    """
-    
-    # Simulate processing delay
-    time.sleep(1.5)
-    
-    # ---------------------------------------------------------
-    # REAL PREDICTION LOGIC (Commented out for now)
-    # ---------------------------------------------------------
-    # if model is not None:
-    #     try:
-    #         # Read the image file
-    #         contents = await image.read()
-    #         img = Image.open(io.BytesIO(contents)).convert("RGB")
-    #         
-    #         # Resize image to match model's expected input (224x224)
-    #         size = (224, 224)
-    #         img = img.resize(size, Image.Resampling.LANCZOS)
-    #         
-    #         # Turn the image into a numpy array
-    #         image_array = np.asarray(img)
-    #         
-    #         # Normalize the image
-    #         normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1
-    #         
-    #         # Load the image into the array
-    #         data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-    #         data[0] = normalized_image_array
-    #         
-    #         # Predict
-    #         prediction = model.predict(data)
-    #         index = np.argmax(prediction)
-    #         class_name = class_names[index].strip()
-    #         confidence = prediction[0][index]
-    #         
-    #         return {
-    #             "disease": class_name[2:] if class_name.startswith(str(index)) else class_name, # Removes index from label if present
-    #             "confidence": float(confidence),
-    #             "is_demo": False
-    #         }
-    #     except Exception as e:
-    #         return {"error": str(e)}
+class PredictionRequest(BaseModel):
+    label: str = Field(min_length=1, max_length=200)
+    crop: str | None = Field(default=None, max_length=100)
+    disease: str | None = Field(default=None, max_length=200)
+    confidence: float = Field(ge=0, le=1)
 
-    # ---------------------------------------------------------
-    # DEMO RESPONSE (Used while model is not connected)
-    # ---------------------------------------------------------
-    
-    # Demo logic based on filename as a simple simulation
-    filename = image.filename.lower()
-    
-    disease_name = "Healthy Crop"
-    confidence = 0.98
-    
-    if "wheat" in filename:
-        disease_name = "Wheat Rust"
-        confidence = 0.87
-    elif "tomato" in filename:
-        disease_name = "Tomato Early Blight"
-        confidence = 0.92
-    
-    return {
-        "disease": disease_name,
-        "confidence": confidence,
-        "is_demo": True
-    }
+
+@app.post("/predict")
+def predict_disease(request: PredictionRequest):
+    try:
+        if request.confidence < CONFIDENCE_THRESHOLD:
+            raise api_error("low_confidence", "Low confidence. Please upload a clearer image of the crop or leaf.", 422)
+        crop = request.crop.strip() if request.crop else None
+        disease = request.disease.strip() if request.disease else request.label.strip()
+        match = disease_database.find(crop, disease) if crop else disease_database.find_any_crop(disease)
+        if not match:
+            return {"success": True, "database_match": False, "label": request.label, "crop": crop, "disease": disease, "confidence": request.confidence, "message": "We identified the crop/disease, but detailed information is not available in the database yet."}
+        disease = match["disease"]
+        result = {"success": True, "database_match": True, "crop": match["crop"]["crop_name"], "disease": disease["disease_name"], "confidence": request.confidence}
+        for key in ("severity", "description", "symptoms", "treatment", "recommended_action", "prevention", "causes", "pathogen", "pathogen_type", "escalate_when"):
+            if key in disease and disease[key] not in (None, "", [], {}):
+                result[key] = disease[key]
+        return result
+    except HTTPException:
+        raise
+    except Exception as exc:
+        print(f"Prediction error ({type(exc).__name__}): {exc}")
+        raise api_error("server_error", "The disease detector is temporarily unavailable. Please try again.", 500) from exc
